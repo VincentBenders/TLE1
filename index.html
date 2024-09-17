@@ -1,72 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Three.js 3D Image</title>
-    <style>
-      body { margin: 0; }
-      canvas { display: block; }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
   </head>
   <body>
-    <!-- Import map to resolve module paths -->
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js",
-          "GLTFLoader": "https://cdn.jsdelivr.net/npm/three@0.153.0/examples/jsm/loaders/GLTFLoader.js"
-        }
-      }
-    </script>
-
-    <script type="module">
-      // Importing modules using the import map
-      import * as THREE from 'three';
-      import { GLTFLoader } from 'GLTFLoader';
-
-      // Set up the scene
-      const scene = new THREE.Scene();
-
-      // Create a camera (perspective)
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 5;
-
-      // Create a renderer
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
-
-      // Add lighting
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(5, 5, 5).normalize();
-      scene.add(light);
-
-      // Load a 3D model (GLTF format)
-      const loader = new GLTFLoader();
-      loader.load(
-        'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
-        (gltf) => {
-          const model = gltf.scene;
-          scene.add(model);
-          animate();
-        },
-        undefined,
-        (error) => {
-          console.error('An error occurred while loading the model', error);
-        }
-      );
-
-      // Render loop
-      function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-      }
-
-      window.addEventListener('resize', () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-      });
-    </script>
+    <canvas class="webgl"></canvas>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
