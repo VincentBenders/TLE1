@@ -1,2 +1,7 @@
 /vendor/
 /includes/vendor/
+.idea
+/includes/uploaded/images/*
+!/includes/uploaded/images/.gitkeep
+/includes/uploaded/objects/*
+!/includes/uploaded/objects/.gitkeep
