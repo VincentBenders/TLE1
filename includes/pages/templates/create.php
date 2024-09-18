@@ -1,6 +1,26 @@
 
 <div class="container px-4">
 
+    <?php if (!empty($_SESSION['success'])) { ?>
+
+        <h2><?= $_SESSION['success'] ?></h2>
+
+        <?php $_SESSION['success'] = ''; ?>
+
+    <?php } ?>
+
+    <?php if(!empty($validationErrors)) { ?>
+
+        <ul>
+
+            <?php foreach ($validationErrors as $validationError) { ?>
+                <li><?= $validationError ?></li>
+            <?php } ?>
+
+        </ul>
+
+    <?php } ?>
+
     <section class="columns is-centered">
         <div class="column is-10">
             <h2 class="title mt-4">Create new object</h2>
