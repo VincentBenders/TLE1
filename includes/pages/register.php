@@ -1,5 +1,8 @@
 <?php
 
+//Always add the title of the page here
+$title = 'Register';
+
 if(isset($_POST['submit'])) {
     /** @var mysqli $db */
     require_once "includes/database.php";

@@ -1,5 +1,7 @@
 <?php
-session_start();
+
+//Always add the title of the page here
+$title = 'Replicator on the weblicator';
 
 //beveilig tegen deeplinken
 //if (!isset($_SESSION['user'])) {
@@ -57,4 +59,4 @@ if (
         }
     }
 }
-?>
+

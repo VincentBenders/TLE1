@@ -1,5 +1,7 @@
 <?php
-session_start();
+//Always add the title of the page here
+$title = 'Edit';
+
 /** @var mysqli $db */
 
 //if (!isset($_SESSION['user'])) {
@@ -53,4 +55,4 @@ if (isset($_POST['submit'])) {
 }
 
 mysqli_close($db);
-?>
+

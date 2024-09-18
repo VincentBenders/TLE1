@@ -1,5 +1,7 @@
 <?php
-session_start();
+//Always add the title of the page here
+$title = 'Delete?';
+
 /** @var mysqli $db */
 
 require_once "includes/database.php";
@@ -22,4 +24,4 @@ if (isset($_GET['id'])) {
 }
 
 mysqli_close($db);
-?>
+

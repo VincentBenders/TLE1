@@ -1,6 +1,7 @@
 <?php
-// Start the session.
-session_start();
+
+//Always add the title of the page here
+$title = 'Logout';
 
 // destroy the session.
 session_destroy();
@@ -10,6 +11,5 @@ header('location: index.php');
 
 // Exit the code.
 exit();
-?>
 
 

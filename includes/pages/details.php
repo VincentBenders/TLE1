@@ -1,5 +1,7 @@
 <?php
-session_start();
+//Always add the title of the page here
+$title = 'Details';
+
 /** @var mysqli $db */
 
 //beveilig tegen deeplinken
@@ -17,4 +19,3 @@ $object = mysqli_fetch_assoc($result);
 
 mysqli_close($db);
 
-?>

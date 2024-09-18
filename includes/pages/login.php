@@ -1,10 +1,9 @@
 <?php
+//Always add the title of the page here
+$title = 'Login';
+
 /** @var mysqli $db */
 /** @var array $errors */
-// required when working with sessions
-session_start();
-
-require_once "includes/database.php";
 
 $login = false;
 

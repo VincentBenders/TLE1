@@ -1,15 +1,4 @@
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>Replicator on the weblicator</title>
-</head>
-<body>
 <div class="container px-4">
 
     <section class="columns is-centered">
@@ -74,9 +63,7 @@
                 </div>
             </form>
 
-            <a class="button mt-4" href="index.php">&laquo; Go back to the list</a>
+            <a class="button mt-4" href="<?= BASE_PATH ?>index.php">&laquo; Go back to the list</a>
         </div>
     </section>
 </div>
-</body>
-</html>
