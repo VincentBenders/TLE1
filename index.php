@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+<?php
+require_once 'includes/initialize.php';
+?>
 
 <!doctype html>
 <html lang="en">
@@ -7,6 +12,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
+
+<?= $content ?? $errors[] = 'Error: content failed to load' ?>
+
 <div class="container px-4">
     <h1 class="title mt-4">Animals</h1>
     <a class = button href="login.php">Login</a>
@@ -66,4 +74,3 @@
     </div>
 </body>
 </html>
-
