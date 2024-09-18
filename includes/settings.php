@@ -2,7 +2,7 @@
 
 //Copied code courtesy of Antwan
 //Paths
-const BASE_PATH = '/CLE2/'; //prg02-eindopdracht
+const BASE_PATH = '/TLE1/';
 const INCLUDES_PATH = __DIR__ . '/';
 const DSN = 'mysql:host=localhost;dbname=tle_1_experimenteren';
 const USERNAME = 'root';
