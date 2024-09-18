@@ -11,13 +11,13 @@ if (isset($_POST['submit'])) {
 
     //Validate the input
     if (empty($_POST['name'])) {
-        $validationErrors[] = 'Field cannot be empty!';
+        $validationErrors[] = 'Name cannot be empty!';
     }
     if (empty($_POST['description'])) {
-        $validationErrors[] = 'Field cannot be empty!';
+        $validationErrors[] = 'Description cannot be empty!';
     }
     if (empty($_POST['file_path'])) {
-        $validationErrors[] = 'Field cannot be empty!';
+        $validationErrors[] = 'Filepath cannot be empty!';
     }
 
     //If the form has been correctly filled in

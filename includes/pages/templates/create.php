@@ -66,7 +66,7 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" id="file" type="text" name="imagelink" value=""/>
+                                <input class="input" id="file_path" type="text" name="file_path" value=""/>
                             </div>
                             <p class="help is-danger">
                                 <?php echo htmlentities($errorFile ?? '') ?>
