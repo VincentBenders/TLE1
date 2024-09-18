@@ -1,30 +1,5 @@
 <?php
 
-
-//$query = "SELECT * FROM objects";
-//$result = mysqli_query($db, $query)
-//or die('error: '.mysqli_error($db));
-//
-//$products = [];
-//
-//while ($row = mysqli_fetch_assoc($result)) {
-//    $products[] = $row;
-//
-//}
-//var_dump($products);
-//foreach ($products as $product){
-//    $product['id'];
-//    $product['user_id'];
-//    $product['name'];
-//    $product['description'];
-//    $product['file_path'];
-//    $product['share'];
-//}
-//
-//mysqli_close($db);
-
-
-
 /**
  * @return array
  */
