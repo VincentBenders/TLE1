@@ -1,24 +1,3 @@
-<?php
-session_start();
-/** @var mysqli $db */
-require_once 'includes/database.php';
-
-//beveilig tegen deeplinken
-//if (!isset($_SESSION['user'])) {
-//    header('Location: register.php');
-//}
-//beveiliging tegen sql injections.
-$objectId = mysqli_escape_string($db,$_GET['id']);
-
-$query = "SELECT * FROM objects WHERE id = $objectId";
-
-$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
-
-$object = mysqli_fetch_assoc($result);
-
-mysqli_close($db);
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -49,4 +28,3 @@ mysqli_close($db);
 </div>
 </body>
 </html>
-
