@@ -14,6 +14,7 @@
         <a href="<?= BASE_PATH ?>logout">logout page</a>
         <a href="<?= BASE_PATH ?>register">register page</a>
         <a href="<?= BASE_PATH ?>secure">secure page</a>
+        <a href="<?= BASE_PATH ?>tagCreate">create tag page</a>
 
     </div>
 
