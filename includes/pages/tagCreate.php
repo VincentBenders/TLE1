@@ -3,16 +3,19 @@
 //Remember to add the title
 $title = 'Create new tag';
 
+//Create an empty array for storing any form input errors
 $validationErrors = [];
 
 //Once the form has been submitted
 if (isset($_POST['submit'])) {
 
     //Validate the input
+    //Check to make sure the name field isn't empty
     if (empty($_POST['name'])) {
+        //If it is empty, add an error to the array
         $validationErrors[] = 'Name cannot be empty!';
     } else {
-        //Check to make sure another tag already has the same name
+        //Check to see if another tag already has the same name
         $db = \classes\Database::connect();
 
         $statement = $db->prepare('SELECT name FROM tags WHERE name = :name');
@@ -20,6 +23,7 @@ if (isset($_POST['submit'])) {
         $statement->execute();
 
         if (!empty($statement->fetch(PDO::FETCH_ASSOC))) {
+            //If there's already a tag with the same name, add an error to the list
             $validationErrors[] = "There's already a tag with that name in the database!";
         }
 
@@ -39,6 +43,8 @@ if (isset($_POST['submit'])) {
         $db = \classes\Database::connect();
 
         //Prepare the SQL query and statement
+        //The :name is a placeholder, remember to add the ':' to indicate it's a placeholder
+        //This is the PDO equivalent of mysql_escape_string() to prevent SQL injection
         $statement = $db->prepare('INSERT INTO tags (name) VALUES(:name)');
 
         //Bind the values to the placeholders

@@ -1,13 +1,17 @@
 <h1>Create new tag</h1>
 
+<!-- If there's a success message, display it -->
 <?php if (!empty($_SESSION['success'])) { ?>
 
     <h2><?= $_SESSION['success'] ?></h2>
 
+<!--    After displaying the message once, clear it out-->
     <?php $_SESSION['success'] = ''; ?>
 
 <?php } ?>
 
+
+<!-- If there are any errors with the input, display them in a list -->
 <?php if(!empty($validationErrors)) { ?>
 
     <ul>
