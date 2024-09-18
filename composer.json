@@ -1,0 +1,12 @@
+{
+    "name": "kasperdejong/tle1",
+    "description": "TLE1",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kasper"
+        }
+    ],
+    "require": {}
+}
