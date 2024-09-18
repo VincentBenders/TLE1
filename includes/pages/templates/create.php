@@ -17,7 +17,7 @@
                                 <input class="input" id="name" type="text" name="name" value=""/>
                             </div>
                             <p class="help is-danger">
-                                <?php echo htmlentities($errorName) ?>
+                                <?php echo htmlentities($errorName ?? '') ?>
                             </p>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="species">Species</label>
+                        <label class="label" for="species">Description</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -33,7 +33,7 @@
                                 <input class="input" id="description" type="text" name="description" value=""/>
                             </div>
                             <p class="help is-danger">
-                                <?php echo htmlentities($errorDescription) ?>
+                                <?php echo htmlentities($errorDescription ?? '') ?>
                             </p>
                         </div>
                     </div>
@@ -41,15 +41,15 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="group">Group</label>
+                        <label class="label" for="group">3d image link</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input class="input" id="file" type="file" name="image" value=""/>
+                                <input class="input" id="file" type="text" name="imagelink" value=""/>
                             </div>
                             <p class="help is-danger">
-                                <?php echo htmlentities($errorFile) ?>
+                                <?php echo htmlentities($errorFile ?? '') ?>
                             </p>
                         </div>
                     </div>

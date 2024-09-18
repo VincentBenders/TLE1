@@ -2,7 +2,6 @@
 
 //Always add the title of the page here
 $title = 'Replicator on the weblicator';
-
 //beveilig tegen deeplinken
 //if (!isset($_SESSION['user'])) {
 //    header('Location: register.php');
@@ -19,7 +18,7 @@ $errorFile = '';
 
 // Is de Form correct ingevuld?
 if (
-    isset($_POST['name'], $_POST['description'], $_POST['file'])
+    isset($_POST['name'], $_POST['description'], $_POST['file_path'])
 ) {
     // Zo nee, stuur een Error Message naar het betreffende veld
     if (empty($_POST['name'])) {
@@ -30,20 +29,20 @@ if (
         $errorDescription = 'description cannot be empty';
     }
 
-    if (empty($_POST['file'])) {
+    if (empty($_POST['file_path'])) {
         $errorFile = 'file cannot be empty';
     }
 
     //Maak variabelen voor de eigenschappen van de animal aan
-    if (empty($errorName) && empty($errorSpecies) && empty($errorGroup)) {
+    if (empty($errorName) && empty($errorDescription) && empty($errorFile)) {
         $name = mysqli_escape_string($db, $_POST ['name']);
         $description = mysqli_escape_string($db, $_POST['description']);
         //deze moet nog uitgezocht worden.
-        $image = mysqli_escape_string($db, $_POST['file']);
+        $image = mysqli_escape_string($db, $_POST['file_path']);
         $user_id = $_SESSION['user_id'];
 
         // Schrijf een Query om het album toe te voegen
-        $query = "INSERT INTO objects (name, description, image, user_id)
+        $query = "INSERT INTO objects (name, description, file_path, user_id)
                     VALUES ('$name', '$description', '$image', '$user_id')";
 
         // Voer de Query uit
@@ -51,7 +50,7 @@ if (
 
         // Terug naar indexpagina
         if ($result) {
-            header('Location: index.php');
+            header('Location: home');
             exit();
             // Echo eventuele Errors
         } else {
