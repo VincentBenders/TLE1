@@ -1,68 +1,64 @@
 <?php
-require_once "settings.php";
 
-/**
- * @param $id
- * @return mixed
- */
+
+//$query = "SELECT * FROM objects";
+//$result = mysqli_query($db, $query)
+//or die('error: '.mysqli_error($db));
+//
+//$products = [];
+//
+//while ($row = mysqli_fetch_assoc($result)) {
+//    $products[] = $row;
+//
+//}
+//var_dump($products);
+//foreach ($products as $product){
+//    $product['id'];
+//    $product['user_id'];
+//    $product['name'];
+//    $product['description'];
+//    $product['file_path'];
+//    $product['share'];
+//}
+//
+//mysqli_close($db);
+
 
 
 /**
  * @return array
  */
-function getDishes()
+function getItemDetails($db)
 {
-    return [
-        [
-            "id" => 1,
-            "name" => "Black Knife",
-            "type" => "Dagger",
-        ],
-        [
-            "id" => 2,
-            "name" => "Sword of Night and Flame",
-            "type" => "Straight Sword",
-        ],
-        [
-            "id" => 3,
-            "name" => "Blasphemous Blade",
-            "type" => "Greatsword",
-        ],
-        [
-            "id" => 4,
-            "name" => "Maliketh's Black Blade",
-            "type" => "Colossal Swords",
-        ],
-        [
-            "id" => 5,
-            "name" => "Hand of Malenia",
-            "type" => "Katana",
-        ],
-        [
-            "id" => 6,
-            "name" => "Eleonora's Poleblade",
-            "type" => "Twinblade",
-        ],
-        [
-            "id" => 7,
-            "name" => "Warped Axe",
-            "type" => "Axe",
-        ],
-        [
-            "id" => 8,
-            "name" => "Winged Scythe",
-            "type" => "Reaper",
-        ],
-        [
-            "id" => 9,
-            "name" => "Erdtree Bow",
-            "type" => "Bow",
-        ],
-        [
-            "id" => 10,
-            "name" => "Golem Greatbow",
-            "type" => "Greatbow",
-        ],
+    /** @var $db */
+    $query = "SELECT * FROM objects";
+    $result = mysqli_query($db, $query)
+    or die('error: '.mysqli_error($db));
+
+    $products = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $products[] = $row;
+
+    }
+    mysqli_close($db);
+    foreach ($products as $product){
+        $product['id'];
+        $product['user_id'];
+        $product['name'];
+        $product['description'];
+        $product['file_path'];
+        $product['share'];
+    }
+
+
+    return  [
+        "id" => $products[0]['id'],
+        "user_id" => $products[0]['user_id'],
+        "name" => $products[0]['name'],
+        "description" => $products[0]['description'],
+        "file_path" => $products[0]['file_path'],
+        "share" => $products[0]['share'],
     ];
 }
 
