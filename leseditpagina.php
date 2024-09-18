@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/database.php';
 /* @var mysqli $db */
-else if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $id = $_POST['id'];
