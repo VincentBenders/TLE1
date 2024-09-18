@@ -1,12 +1,23 @@
 {
-    "name": "kasperdejong/tle1",
-    "description": "TLE1",
-    "type": "project",
+    "name": "kasper/tle1",
     "license": "MIT",
+    "minimum-stability": "stable",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "classes\\": "includes/classes"
+        }
+    },
+    "config": {
+        "vendor-dir": "includes/vendor"
+    },
     "authors": [
         {
             "name": "Kasper"
         }
     ],
-    "require": {}
+    "require": {
+        "ext-pdo": "*",
+        "ext-fileinfo": "*"
+    }
 }

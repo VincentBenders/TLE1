@@ -1,7 +1,7 @@
 <?php
 //Require settings and autoload
 require_once 'settings.php';
-// require_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 //start session
 session_start();
@@ -9,10 +9,6 @@ session_start();
 //Set variable for errors
 $errors = [];
 
-//Set variable for verification toggle
-$db = \classes\Database::connect();
-$verification = \classes\Admin::checkToggle($db);
-\classes\Database::disconnect();
 
 //Copied code courtesy of Antwan
 try {
@@ -33,20 +29,6 @@ try {
     $content = ob_get_clean();
 
 
-    //Set allowed pages for unverified and blacklisted users
-    if ($_SESSION['role_id'] == 4 && $verification['toggle'] == 1 || $_SESSION['role_id'] == 3 || empty($_SESSION['role_id'])) {
-
-        $allow = match ($currentPage) {
-            'home', 'login', 'logout', 'register', 'profile', 'userDelete', 'userUpdate', '404', 'about' => true,
-            default => false
-        };
-
-        if (!$allow) {
-            header('location: home');
-            exit;
-        }
-
-    }
 
 } catch (Exception $e) {
     //Set error
