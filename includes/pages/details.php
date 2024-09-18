@@ -7,7 +7,8 @@ $title = 'Details';
 //beveilig tegen deeplinken
 //if (!isset($_SESSION['user'])) {
 //    header('Location: register.php');
-//}
+//
+
 //beveiliging tegen sql injections.
 $objectId = mysqli_escape_string($db,$_GET['id']);
 

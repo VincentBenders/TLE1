@@ -5,7 +5,7 @@
             <section class="content">
                 <ul>
                     <li>Description: <?php echo htmlentities($object['description']) ?></li>
-                    <li>Image: <?php echo htmlentities($object['file']) ?></li>
+                    <li>Image: <?php echo htmlentities($object['file_path']) ?></li>
                     <li>User that published this object: <?php echo htmlentities($object['user_id']) ?></li>
                 </ul>
             </section>

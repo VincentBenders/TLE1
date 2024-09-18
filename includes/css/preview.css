@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    background: darkgray;
+    justify-content: center;
+    display: flex;
+    font-family: "Berlin Sans FB";
+}
+
+section {
+    background: black;
+    padding: 2vw;
+    margin: 5vw;
+    color: black;
+    border: 5px groove grey;
+    display: flex;
+    flex-direction: column;
+}
+
+section div {
+    margin: 1vw;
+    display: flex;
+    justify-content: left;
+}
+
+#debugLinks {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: right;
+}
+
+block {
+    display: flex;
+    flex-direction: column;
+}
+
+section h1 {
+    background: chartreuse;
+    margin: 0.1vw;
+    padding: 1vw;
+    border-radius: 10px;
+}
+
+section h2 {
+    background: chartreuse;
+    margin: 0.1vw;
+    padding: 1vw;
+    border-radius: 10px;
+}
+
+section label {
+    background: aqua;
+    margin: 0.1vw;
+    padding: 1vw;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+section p {
+    background: aquamarine;
+    margin: 0.1vw;
+    padding: 0.5vw;
+    border-radius: 10px;
+    flex: 2;
+    height: 10vh;
+}
+
+section a {
+    background: aqua;
+    margin: 0.1vw;
+    padding: 1vw;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+section a:hover {
+    background: blueviolet;
+}

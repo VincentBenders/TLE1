@@ -22,7 +22,7 @@ $query = "UPDATE products
 
     mysqli_close($db);
 
-    header('Location: index.php');
+    header('Location: lesindexpagina.php');
     exit;
 }
 
