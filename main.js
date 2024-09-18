@@ -1,66 +1,76 @@
 import * as THREE from 'three';
 import './style.css';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // create a scene
 const scene = new THREE.Scene();
+const loader = new GLTFLoader();
 
-// Create our sphere
-const geometry = new THREE.SphereGeometry(3, 64, 64);
-const material = new THREE.MeshStandardMaterial({
-  color: "#00ff83",
-})
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
+// Load GLTF model
+loader.load('/9_18_2024.glb', function (gltf) {
+    const model = gltf.scene;
+
+    // Adjust model scale and position
+    model.scale.set(10, 10, 10);  // Change these values based on the model size
+    model.position.set(0, 0, 0);  // Center the model in the scene
+
+    scene.add(model);
+}, undefined, function (error) {
+    console.error(error);
+});
 
 // Sizes
 const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight
-}
-// Light
-const light = new THREE.PointLight(0xffffff, 70, 100)
-light.position.set(0,10, 10)
-scene.add(light)
+    width: window.innerWidth,
+    height: window.innerHeight
+};
+
+// Lights
+const light = new THREE.PointLight(0xffffff, 20, 100);  // Reduced intensity
+light.position.set(10, 10, 10);
+scene.add(light);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);  // Added ambient light for better visibility
+scene.add(ambientLight);
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height )
-camera.position.z = 20
-scene.add(camera)
-
-
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height);
+camera.position.z = 10;
+scene.add(camera);
 
 // Renderer
 const canvas = document.querySelector('.webgl');
 const renderer = new THREE.WebGLRenderer({ canvas });
-renderer.setSize(sizes.width,sizes.height)
-renderer.setPixelRatio(2)
-renderer.render(scene, camera)
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));  // Set pixel ratio based on device
+renderer.render(scene, camera);
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.enableZoom = false;
-controls.enablePan = false;
+controls.enableZoom = false;  // Allow zoom in and out to find the model
+controls.enablePan = false;  // Allow panning
 controls.autoRotate = true;
-controls.autoRotateSpeed = 5;
+controls.autoRotateSpeed = 2;
 controls.update();
 
-// resize
+// Resize handling
 window.addEventListener('resize', () => {
-  sizes.width = window.innerWidth
-  sizes.height = window.innerHeight
-  // update camera
-  camera.aspect = sizes.width / sizes.height
-  camera.updateProjectionMatrix()
-  // update renderer
-  renderer.setSize(sizes.width, sizes.height)
-})
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+    // Update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height);
+});
 
+// Animation loop
 const loop = () => {
-  controls.update
-  renderer.render(scene,camera);
-  window.requestAnimationFrame(loop)
-}
+    controls.update();  // Update controls
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(loop);
+};
 
-loop()
+loop();
