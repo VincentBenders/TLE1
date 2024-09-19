@@ -7,8 +7,9 @@ require_once 'includes/initialize.php';
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?? 'Error: Title not set' ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">-->
+<!--    <link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="includes/css/preview.css">
 <!--    Don't forget to link the css file here-->
 </head>
 <body>
