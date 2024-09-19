@@ -1,13 +1,13 @@
 body {
     margin: 0;
-    background: darkgray;
+    background-image: url("../includes/images/metal.jpg");
     justify-content: center;
     display: flex;
     font-family: "Berlin Sans FB";
 }
 
 section {
-    background: black;
+    background-image: linear-gradient(to bottom left, black, #333333);
     padding: 2vw;
     margin: 5vw;
     color: black;
@@ -35,10 +35,17 @@ block {
 }
 
 section h1 {
-    background: chartreuse;
+    background-image: linear-gradient(to right, cyan, lightgreen);
+    background-position: 0 100%;
+    background-size: 200% 100%;
     margin: 0.1vw;
     padding: 1vw;
     border-radius: 10px;
+    transition: background-position ease-in-out 0.5s;
+}
+
+section h1:hover {
+    background-position: 100% 100%;
 }
 
 section h2 {
@@ -67,14 +74,17 @@ section p {
 }
 
 section a {
-    background: aqua;
+    background-image: linear-gradient(to right, chartreuse, cyan);
+    background-position: 0 100%;
+    background-size: 200% 100%;
     margin: 0.1vw;
     padding: 1vw;
     border-radius: 10px;
     color: black;
     text-decoration: none;
+    transition: background-position ease-in-out 0.5s;
 }
 
 section a:hover {
-    background: blueviolet;
+    background-position: 100% 100%;
 }
