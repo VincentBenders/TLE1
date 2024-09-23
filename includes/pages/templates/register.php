@@ -1,96 +1,64 @@
-<section class="section">
-    <div class="container content">
-        <h2 class="title">Register With Email</h2>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-        <section class="columns">
-            <form class="column is-6" action="" method="post">
+<main id="delete">
+    <section>
+        <h1 class="register_new_account is-size-1 has-text-centered is-black has-text-weight-bold">Maak een nieuw account aan</h1>
 
-                <!-- First name -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="firstName">First name</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="firstName" type="text" name="firstName" value="<?= isset($firstName) ? $firstName : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= $errors['firstName'] ?? '' ?>
-                            </p>
+        <div class="error_list">
+            <!-- Toon fouten als deze er zijn -->
+            <?php if (isset($errors)) { ?>
+                <ul>
+                    <?php foreach ($errors as $error) { ?>
+                        <li> -<?= $error ?> </li>
+                    <?php } ?>
+                </ul>
+            <?php } ?>
+        </div>
+
+        <!-- Registratieformulier -->
+        <form action="" method="post" enctype="multipart/form-data">
+            <!-- Naam -->
+            <div class="columns is-centered">
+                <div class="column is-one-third is-centered">
+                    <input class="input" type="text" placeholder="Naam" name="name" id="name" value="<?= htmlentities($_POST['name'] ?? '') ?>">
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="columns is-centered">
+                <div class="column is-one-third is-centered">
+                    <input class="input" type="text" placeholder="Email" name="email" id="email" value="<?= htmlentities($_POST['email'] ?? '') ?>">
+                </div>
+            </div>
+
+            <!-- Wachtwoord -->
+            <div class="columns is-centered">
+                <div class="column is-one-third is-centered">
+                    <input class="input" type="password" placeholder="Wachtwoord" name="password" id="password" value="<?= htmlentities($_POST['password'] ?? '') ?>">
+                </div>
+            </div>
+
+            <!-- Profielfoto -->
+            <div class="columns is-centered">
+                <div class="column is-one-third is-centered">
+                    <div class="field">
+                        <label for="image">Profiel foto</label>
+                        <div class="control">
+                            <input type="file" name="image" id="image">
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Last name -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="lastName">Last name</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="lastName" type="text" name="lastName" value="<?= isset($lastName) ? $lastName : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= $errors['lastName'] ?? '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Submit-knop -->
+            <div class="buttons is-centered" id="submit_id">
+                <button class="button is-link is-half is-warning" type="submit" name="submit">Account aanmaken</button>
+            </div>
+        </form>
+    </section>
 
-                <!-- Email -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="email">Email</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email   : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= $errors['email'] ?? '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Password -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="password">Password</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="password" type="password" name="password" value="<?= isset($password) ? $password  : '' ?>"/>
-                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= $errors['password'] ?? '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal"></div>
-                    <div class="field-body">
-                        <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
-                    </div>
-                </div>
-
-                <div>
-                    <a class = button href="login.php">Login</a>
-                </div>
-
-            </form>
-        </section>
-
-    </div>
-</section>
+    <section class="existing_account_section">
+        <h2 class="existing_account is-size-6 has-text-centered is-black has-text-weight-bold">Heb je al een account?</h2>
+        <a class="existing_account is-size-6 has-text-centered is-black has-text-weight-bold" href="<?= BASE_PATH ?>login">Log in</a>
+    </section>
+</main>
