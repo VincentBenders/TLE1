@@ -4,19 +4,17 @@ $title = 'Details';
 
 /** @var mysqli $db */
 
-//beveilig tegen deeplinken
-//if (!isset($_SESSION['user'])) {
-//    header('Location: register.php');
-//
+    $db = \classes\Database::connect();
 
-//beveiliging tegen sql injections.
-$objectId = mysqli_escape_string($db,$_GET['id']);
+$objectId = $_GET['id'];
 
-$query = "SELECT * FROM objects WHERE id = $objectId";
+$statement = $db->prepare('SELECT * FROM objects WHERE id = :id');
 
-$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+$statement->bindValue(':id', $objectId);
 
-$object = mysqli_fetch_assoc($result);
+$statement->execute();
 
-mysqli_close($db);
+$objectData = $statement->fetch(PDO::FETCH_ASSOC);
+
+\classes\Database::disconnect();
 
