@@ -1,27 +1,28 @@
 <?php
-//Always add the title of the page here
-$title = 'Delete?';
 
-/** @var mysqli $db */
+if (isset($_POST['submit'])) {
 
-require_once "includes/database.php";
+    $title = 'Delete Object';
 
-if (isset($_GET['id'])) {
+    /** @var mysqli $db */
+
     $objectId = $_GET['id'];
 
-    $query = "DELETE FROM objects WHERE id = $objectId";
+    $db = \classes\Database::connect();
 
-    $result = mysqli_query($db, $query);
+    $statement = $db->prepare('DELETE FROM objects WHERE id = :id');
 
-    if ($result) {
-        header('Location: index.php');
-        exit();
-    } else {
-        echo 'Error: ' . mysqli_error($db);
-    }
-} else {
-    echo 'Invalid object ID';
+    $statement->bindValue(':id', $objectId);
+
+    $statement->execute();
+
+    \classes\Database::disconnect();
+
+    header('location:home');
+
+    exit;
+
 }
 
-mysqli_close($db);
+
 
