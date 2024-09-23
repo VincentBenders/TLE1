@@ -1,12 +1,13 @@
 <?php
 // Database connect
-$host = "localhost";
-$database = "tle_1_experimenteren";
+$host = "mysql:host=localhost;dbname=tle_1_experimenteren";
+
+
 $user = "root";
 $password = "";
 
 // Maak een verbinding met de database
-$db = mysqli_connect($host, $user, $password, $database);
+$db = new PDO($host, $user,$password);
 /**
  * @param $id
  * @return mixed
