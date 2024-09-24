@@ -4,55 +4,73 @@ $title = 'Edit';
 
 /** @var mysqli $db */
 
-//if (!isset($_SESSION['user'])) {
-//    header('Location: register.php');
-//}
+    $db = \classes\Database::connect();
 
-$animalId = mysqli_escape_string($db, $_GET['id']);
+$objectId = $_GET['id'];
 
-$query = "SELECT * FROM objects WHERE id = $objectId";
+$statement = $db->prepare('SELECT * FROM objects WHERE id = :id');
 
-$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+$statement->bindValue(':id', $objectId);
 
-$object = mysqli_fetch_assoc($result);
+$statement->execute();
+
+$objectData = $statement->fetch(PDO::FETCH_ASSOC);
 
 $errorName = '';
 $errorDescription = '';
 $errorFile = '';
 
-if (isset($_POST['submit'])) {
-    if (empty($_POST['name'])) {
-        $errorName = 'Name cannot be empty';
-    }
 
-    if (empty($_POST['description'])) {
-        $errorDescription = 'Description cannot be empty';
-    }
+    if (isset($_POST['submit'])) {
 
-    if (empty($_POST['image'])) {
-        $errorGroup = 'image cannot be empty';
-    }
-
-
-    if (empty($errorName) && empty($errorDescription) && empty($errorFile)) {
-        $name = mysqli_real_escape_string($db, $_POST['name']);
-        $description = mysqli_real_escape_string($db, $_POST['description']);
-        $image = mysqli_real_escape_string($db, $_POST['image']);
-        $user_id = $_SESSION['user_id'];
-
-        $query = "UPDATE objects 
-            SET name = '$name', description = '$description', image = '$image' WHERE id = $objectId";
-
-        $result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
-
-        if ($result) {
-            header('Location: index.php');
-            exit();
-        } else {
-            echo 'Error: ' . mysqli_error($db);
+        //Validate the input
+        if (empty($_POST['name'])) {
+            $validationErrors[] = 'Name cannot be empty!';
         }
-    }
+        if (empty($_POST['description'])) {
+            $validationErrors[] = 'Description cannot be empty!';
+        }
+        if (empty($_POST['file_path'])) {
+            $validationErrors[] = 'Filepath cannot be empty!';
+        }
+
+        //If the form has been correctly filled in
+        if (empty($validationErrors)) {
+
+            //Package the posted data
+            $newObject = [];
+
+            $newObject['name'] = $_POST['name'];
+            $newObject['description'] = $_POST['description'];
+            $newObject['file_path'] = $_POST['file_path'];
+
+            //Connect to the database
+            $db = \classes\Database::connect();
+
+            //Prepare the SQL query and statement
+            $statement = $db->prepare('UPDATE objects SET name = :name, description = :description, file_path = :file_path WHERE id = :id');
+
+            //Bind the values to the placeholders
+            $statement->bindValue(':name', $newObject['name']);
+            $statement->bindValue(':description', $newObject['description']);
+            $statement->bindValue(':file_path', $newObject['file_path']);
+            $statement->bindValue(':id', $objectId);
+
+
+            //Perform the query on the database
+            $statement->execute();
+
+            //Disconnect from the database
+            \classes\Database::disconnect();
+
+            //Clear the post array
+            $_POST = [];
+
+            //Return the user to the same page with a success message
+            header('location: create');
+            $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
+            exit;
+
+        }
+
 }
-
-mysqli_close($db);
-
