@@ -1,71 +1,89 @@
-<div class="container px-4">
+<!--<div>-->
+<!---->
+<!--    <section>-->
+<!--        <div>-->
+<!--            <h2>Edit animal data: --><?//= htmlentities($objectData['name']) ?><!--</h2>-->
+<!---->
+<!--            <form action="" method="post">-->
+<!---->
+<!--                <div>-->
+<!--                    <label for="name">Name</label>-->
+<!--                    <input id="name" type="text" name="name" value="--><?//= htmlentities($objectData['name']) ?><!--"/>-->
+<!--                    <p>-->
+<!--                        --><?php //echo isset($errorName) ? $errorName : ''; ?>
+<!--                    </p>-->
+<!--                </div>-->
+<!---->
+<!--                <div>-->
+<!--                    <label for="artist">Description</label>-->
+<!--                    <input id="description" type="text" name="description" value="--><?//= htmlentities($objectData['description']) ?><!--"/>-->
+<!--                    <p>-->
+<!--                        --><?php //echo isset($errorDescription) ? $errorDescription : ''; ?>
+<!--                    </p>-->
+<!--                </div>-->
+<!---->
+<!--                <div>-->
+<!--                    <label for="group">Image</label>-->
+<!--                    <input id="file" type="file" name="image" value="--><?//= htmlentities($objectData['image']) ?><!--"/>-->
+<!--                    <p>-->
+<!--                        --><?//= isset($errorFile) ? $errorFile : ''; ?>
+<!--                    </p>-->
+<!--                </div>-->
+<!---->
+<!---->
+<!--                <input type="hidden" id="id" class="id" name="id" value="--><?//= htmlentities($objectId) ?><!--">-->
+<!---->
+<!--                <button type="submit" name="submit">Save</button>-->
+<!--            </form>-->
+<!---->
+<!--            <a href="--><?//= BASE_PATH ?><!--index.php">&laquo; Go back to the list</a>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</div>-->
+<section>
+    <h2>Create new object</h2>
 
-    <section class="columns is-centered">
-        <div class="column is-10">
-            <h2 class="title mt-4">Edit animal data: <?= htmlentities($object['name']) ?></h2>
+    <?php if (!empty($_SESSION['success'])) { ?>
 
-            <form class="column is-6" action="" method="post">
+        <h2 style="color:white"><?= $_SESSION['success'] ?></h2>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="name">Name</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" id="name" type="text" name="name" value="<?php echo htmlentities($object['name']) ?>"/>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo isset($errorName) ? $errorName : ''; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+        <?php $_SESSION['success'] = ''; ?>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="artist">Description</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" id="description" type="text" name="description" value="<?php echo htmlentities($object['description']) ?>"/>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo isset($errorDescription) ? $errorDescription : ''; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <?php } ?>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="group">Image</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input" id="file" type="file" name="image" value="<?php echo htmlentities($object['image']) ?>"/>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo isset($errorFile) ? $errorFile : ''; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <?php if (!empty($validationErrors)) { ?>
+
+        <ul>
+
+            <?php foreach ($validationErrors as $validationError) { ?>
+                <li style="color:white"><?= $validationError ?></li>
+            <?php } ?>
+
+        </ul>
+
+    <?php } ?>
 
 
-                <input type="hidden" id="id" class="id" name="id" value="<?php echo htmlentities($objectId) ?>">
+    <form action="" method="post">
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal"></div>
-                    <div class="field-body">
-                        <button class="button is-link is-fullwidth" type="submit" name="submit">Save</button>
-                    </div>
-                </div>
-            </form>
-
-            <a class="button mt-4" href="index.php">&laquo; Go back to the list</a>
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" value="<?= htmlentities($objectData['name']) ?>">
         </div>
-    </section>
-</div>
+
+        <div>
+            <label for="description">Description</label>
+            <input id="description" type="text" name="description" value="<?= htmlentities($objectData['description']) ?>">
+        </div>
+
+        <div>
+            <label for="file_path">3d image link</label>
+            <input id="file_path" type="file" name="file_path" value="<?= htmlentities($objectData['file_path']) ?>">
+        </div>
+
+        <button type="submit" name="submit">Save</button>
+
+    </form>
+
+    <a href="<?= BASE_PATH ?>index.php">&laquo; Go back to the list</a>
+</section>
