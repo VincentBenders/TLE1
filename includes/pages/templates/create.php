@@ -36,7 +36,7 @@
 
         <div>
             <label for="file_path">3d image link</label>
-            <input id="file_path" type="text" name="file_path" value="">
+            <input id="file_path" type="file" name="file_path" value="">
         </div>
 
         <button type="submit" name="submit">Save</button>

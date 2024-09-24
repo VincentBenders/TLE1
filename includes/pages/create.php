@@ -29,7 +29,14 @@ if (isset($_POST['submit'])) {
 
         $newObject['name'] = $_POST['name'];
         $newObject['description'] = $_POST['description'];
-        $newObject['file_path'] = $_POST['file_path'];
+
+        //Save the uploaded file
+
+    if (!empty($_FILES['image'])) {
+        $image = new \classes\Image();
+        $newObject['file_path'] = $image->save($_FILES['image']);
+    }
+
 
         //Connect to the database
         $db = \classes\Database::connect();

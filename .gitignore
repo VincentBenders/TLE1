@@ -1,6 +1,7 @@
 /vendor/
 /includes/vendor/
 .idea
+/node_modules
 /includes/uploaded/images/*
 !/includes/uploaded/images/.gitkeep
 /includes/uploaded/objects/*
