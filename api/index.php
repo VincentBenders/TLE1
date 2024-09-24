@@ -1,13 +1,16 @@
 <?php
-
+require_once "settings.php";
 //Require functions for actions
-require_once "includes/actions.php";
+require_once "actions.php";
 
 //Based on the existence of the GET parameter, 1 of the 2 functions will be called
 if (!isset($_GET['id'])) {
-    $data = getDishes();
+    /** @var $db */
+    $data = getAllPublicItem($db);
 } else {
-    $data = getDishDetails($_GET['id']);
+    /** @var $db */
+    $data = getItemDetailsById($db ,$_GET['id']);
+//    var_dump($data);
 }
 
 //Set the header & output JSON so the client will know what to expect.

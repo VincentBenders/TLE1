@@ -1,5 +1,6 @@
 /vendor/
-/includes/vendor/
+/includes/vendor/git
+settings.php
 .idea
 /node_modules
 /includes/uploaded/images/*
