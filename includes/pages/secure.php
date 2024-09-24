@@ -1,5 +1,8 @@
 <?php
-session_start();
+
+//Always add the title of the page here
+//Not sure if this page needs a title or not -Sander
+$title = 'secure';
 
 //May I visit this page? Check the SESSION
 if (!isset($_SESSION['user'])) {

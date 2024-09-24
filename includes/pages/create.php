@@ -1,60 +1,64 @@
+// File upload fixen
 <?php
-session_start();
 
-//beveilig tegen deeplinken
-//if (!isset($_SESSION['user'])) {
-//    header('Location: register.php');
-//}
-
-// $db bestaat al
 /** @var mysqli $db */
+//Remember to add the title
+$title = 'Create new object';
 
+$validationErrors = [];
 
-// Maak variabelen voor alle Error Messages
-$errorName = '';
-$errorDescription = '';
-$errorFile = '';
+//Once the form has been submitted
+if (isset($_POST['submit'])) {
 
-// Is de Form correct ingevuld?
-if (
-    isset($_POST['name'], $_POST['description'], $_POST['file'])
-) {
-    // Zo nee, stuur een Error Message naar het betreffende veld
+    //Validate the input
     if (empty($_POST['name'])) {
-        $errorName = 'Name cannot be empty';
+        $validationErrors[] = 'Name cannot be empty!';
     }
-
     if (empty($_POST['description'])) {
-        $errorDescription = 'description cannot be empty';
+        $validationErrors[] = 'Description cannot be empty!';
+    }
+    if (empty($_POST['file_path'])) {
+        $validationErrors[] = 'Filepath cannot be empty!';
     }
 
-    if (empty($_POST['file'])) {
-        $errorFile = 'file cannot be empty';
+    //If the form has been correctly filled in
+    if (empty($validationErrors)) {
+
+        //Package the posted data
+        $newObject = [];
+
+        $newObject['name'] = $_POST['name'];
+        $newObject['description'] = $_POST['description'];
+        $newObject['file_path'] = $_POST['file_path'];
+
+        //Connect to the database
+        $db = \classes\Database::connect();
+
+        //Prepare the SQL query and statement
+        $statement = $db->prepare('INSERT INTO objects (user_id, name, description, file_path, share) VALUES(1, :name, :description, :file_path, 1)');
+
+        //Bind the values to the placeholders
+        $statement->bindValue(':name', $newObject['name']);
+        $statement->bindValue(':description', $newObject['description']);
+        $statement->bindValue(':file_path', $newObject['file_path']);
+
+
+        //Perform the query on the database
+        $statement->execute();
+
+        //Disconnect from the database
+        \classes\Database::disconnect();
+
+        //Clear the post array
+        $_POST = [];
+
+        //Return the user to the same page with a success message
+        header('location: create');
+        $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
+        exit;
+
     }
 
-    //Maak variabelen voor de eigenschappen van de animal aan
-    if (empty($errorName) && empty($errorSpecies) && empty($errorGroup)) {
-        $name = mysqli_escape_string($db, $_POST ['name']);
-        $description = mysqli_escape_string($db, $_POST['description']);
-        //deze moet nog uitgezocht worden.
-        $image = mysqli_escape_string($db, $_POST['file']);
-        $user_id = $_SESSION['user_id'];
 
-        // Schrijf een Query om het album toe te voegen
-        $query = "INSERT INTO objects (name, description, image, user_id)
-                    VALUES ('$name', '$description', '$image', '$user_id')";
-
-        // Voer de Query uit
-        $result = mysqli_query($db, $query);
-
-        // Terug naar indexpagina
-        if ($result) {
-            header('Location: index.php');
-            exit();
-            // Echo eventuele Errors
-        } else {
-            echo 'Error: ' . mysqli_error($db);
-        }
-    }
 }
-?>
+

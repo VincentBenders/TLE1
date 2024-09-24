@@ -1,20 +1,20 @@
 <?php
-session_start();
+//Always add the title of the page here
+$title = 'Details';
+
 /** @var mysqli $db */
 
-//beveilig tegen deeplinken
-//if (!isset($_SESSION['user'])) {
-//    header('Location: register.php');
-//}
-//beveiliging tegen sql injections.
-$objectId = mysqli_escape_string($db,$_GET['id']);
+    $db = \classes\Database::connect();
 
-$query = "SELECT * FROM objects WHERE id = $objectId";
+$objectId = $_GET['id'];
 
-$result = mysqli_query($db, $query) or die('Error ' . mysqli_error($db) . ' with query ' . $query);
+$statement = $db->prepare('SELECT * FROM objects WHERE id = :id');
 
-$object = mysqli_fetch_assoc($result);
+$statement->bindValue(':id', $objectId);
 
-mysqli_close($db);
+$statement->execute();
 
-?>
+$objectData = $statement->fetch(PDO::FETCH_ASSOC);
+
+\classes\Database::disconnect();
+
