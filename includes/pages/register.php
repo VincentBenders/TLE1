@@ -1,48 +1,77 @@
 <?php
 
-//Always add the title of the page here
-$title = 'Register';
+$title = 'register';
 
-if(isset($_POST['submit'])) {
-    /** @var mysqli $db */
-    require_once "includes/database.php";
+// Als de submit-knop is ingedrukt
+if (isset($_POST['submit'])) {
 
-    // Get form data
-    $firstName = mysqli_escape_string($db, $_POST['firstName']);
-    $lastName = mysqli_escape_string($db, $_POST['lastName']);
-    $email = mysqli_escape_string($db, $_POST['email']);
-    $password = mysqli_escape_string($db, $_POST['password']);
-    $hashed = password_hash($password,PASSWORD_DEFAULT);
+    // Verbinding maken met de database
+    $db = classes\Database::connect();
 
-    // Server-side validation
+    // Server-side validatie
     $errors = [];
-    if ($firstName == "") {
-        $errors['firstName'] = "Vul aub uw voornaam in";
-    }
-    if ($lastName == "") {
-        $errors['lastName'] = "Vul aub uw achternaam in";
-    }
-    if ($email == "") {
-        $errors['email'] = "Vul aub uw email in";
-    }
-    if ($password == "") {
-        $errors['password'] = "Vul aub uw wachtwoord in";
+
+    // Controleer of de volledige naam is ingevuld
+    if (empty($_POST['name'])) {
+        $errors['name'] = 'Naam mag niet leeg zijn.';
     }
 
-    if (empty($errors)) {
-        //INSERT in DB
-        $query = "INSERT INTO users (first_name, last_name, email, password)
-                    VALUES('$firstName', '$lastName', '$email', '$hashed')";
-        $result = mysqli_query($db, $query);
+    // Validatie voor e-mail
+    if (!empty($_POST['email'])) {
+        if (strpos($_POST['email'], '@') === false) {
+            $errors['email'] = 'Email moet een @ bevatten.';
+        }
+    } else {
+        $errors['email'] = 'Email mag niet leeg zijn.';
+    }
 
-        if ($result) {
-            $success = "Hij is toegevoegd aan de DB";
-            header('Location: login.php');
-            exit;
-        } else {
-            $errors['db'] = mysqli_error($db);
+    // Validatie voor wachtwoord
+    if (empty($_POST['password'])) {
+        $errors['password'] = 'Wachtwoord mag niet leeg zijn.';
+    }
+
+    // Controleer of de e-mail al in gebruik is
+    else if (classes\User::selectByEmail($db, $_POST['email'])) {
+        $errors['email'] = 'Email is al in gebruik.';
+    }
+
+    // Validatie voor profielfoto
+    if (!empty($_FILES['image']['type'])) {
+        if ($_FILES['image']['type'] != 'image/png' && $_FILES['image']['type'] != 'image/jpg' && $_FILES['image']['type'] != 'image/jpeg') {
+            $errors[] = 'Foto moet van het type PNG of JPG zijn';
+        }
+
+        if ($_FILES['image']['size'] > 1000000) {
+            $errors[] = 'Foto bestand is te groot';
         }
     }
 
+    // Als er geen fouten zijn
+    if (empty($errors)) {
+        $image = new \classes\Image();
+
+        // Gebruikersgegevens opslaan in een array
+        $user = [
+            'name' => $_POST['name'], // Volledige naam
+            'email' => $_POST['email'],
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            'profile_image_path' => !empty($_FILES['image']['name']) ? $image->save($_FILES['image']) : ''
+        ];
+
+        // Voeg de nieuwe gebruiker toe aan de database
+        if (classes\User::createNew($user, $db)) {
+            // Sluit de databaseverbinding
+            classes\Database::disconnect();
+
+            // Redirect naar de loginpagina
+            header('location: login');
+            $_SESSION['success'] = 'Account is succesvol aangemaakt.';
+            exit;
+        } else {
+            $errors[] = 'Er is iets mis gegaan met het opslaan van de gegevens, probeer het nog een keer.';
+        }
+    }
+
+    // Sluit de databaseverbinding
+    classes\Database::disconnect();
 }
-?>

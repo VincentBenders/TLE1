@@ -11,7 +11,7 @@ $login = false;
 $errorEmail = '';
 $errorPassword = '';
 
-// Is user logged in?
+// Is from submitted?
 if (isset($_POST['submit'])) {
 
     // Get form data

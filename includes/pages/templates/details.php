@@ -1,18 +1,18 @@
-<div class="container px-4">
-    <div class="columns is-centered">
-        <div class="column is-narrow">
-            <h2 class="title mt-4"><?php echo htmlentities($object['name']) ?> details</h2>
-            <section class="content">
+<div>
+            <section>
+                <h2><?= htmlentities($objectData['name']) ?> details</h2>
+
                 <ul>
-                    <li>Description: <?php echo htmlentities($object['description']) ?></li>
-                    <li>Image: <?php echo htmlentities($object['file_path']) ?></li>
-                    <li>User that published this object: <?php echo htmlentities($object['user_id']) ?></li>
+                    <li>Description: <?= htmlentities($objectData['description']) ?></li>
+                    <li>Image: <?= htmlentities($objectData['file_path']) ?></li>
+                    <li>User that published this object: <?= htmlentities($objectData['user_id']) ?></li>
                 </ul>
+
+                <div>
+                    <a class="button" href="index.php">Go back to the list</a>
+                </div>
+
             </section>
-            <div>
-                <a class="button" href="index.php">Go back to the list</a>
-            </div>
-        </div>
-    </div>
+
 </div>
 

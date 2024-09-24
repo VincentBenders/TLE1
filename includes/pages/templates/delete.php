@@ -1,7 +1,13 @@
-
+<section>
 
 <h1>Delete?</h1>
 
-<button>Delete object</button>
+<form action="" method="post">
+
+    <input type="submit" name="submit" value="Delete">
+
+</form>
 
 <a href="<?= BASE_PATH ?>details">Go back</a>
+
+</section>
