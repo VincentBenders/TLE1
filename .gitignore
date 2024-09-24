@@ -1,5 +1,5 @@
 /vendor/
-/includes/vendor/
+/includes/vendor/git
 settings.php
 .idea
 /includes/uploaded/images/*
