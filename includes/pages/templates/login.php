@@ -1,68 +1,59 @@
-<section class="section">
-    <div class="container content">
-        <h2 class="title">Log in</h2>
-
-        <?php if ($login) { ?>
-            <p>Je bent ingelogd!</p>
-            <p><a href="logout.php">Uitloggen</a> / <a href="secure.php">Naar secure page</a></p>
-        <?php } else { ?>
-
-            <section class="columns">
-                <form class="column is-6" action="" method="post">
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label" for="email">Email</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control has-icons-left">
-                                    <input class="input" id="email" type="text" name="email" value="<?= $email ?? '' ?>" />
-                                    <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                                </div>
-                                <p class="help is-danger">
-                                    <?php echo isset($errorEmail) ? $errorEmail : ''; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label" for="password">Password</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control has-icons-left">
-                                    <input class="input" id="password" type="password" name="password"/>
-                                    <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
-
-                                    <?php if(isset($errors['loginFailed'])) { ?>
-                                        <div class="notification is-danger">
-                                            <button class="delete"></button>
-                                            <?=$errors['loginFailed']?>
-                                        </div>
-                                    <?php } ?>
-
-                                </div>
-                                <p class="help is-danger">
-                                    <?php echo isset($errorPassword) ? $errorPassword : ''; ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal"></div>
-                        <div class="field-body">
-                            <button class="button is-link is-fullwidth" type="submit" name="submit">Log in With Email</button>
-                        </div>
-                    </div>
-
-                </form>
-            </section>
-
-        <?php } ?>
-
+<?php if ($_SESSION['success'] ?? false) { ?>
+    <div class="columns is-centered">
+        <div class="column is-one-third is-centered">
+            <ul>
+                <li class="positive has-text-centered"><?= $_SESSION['success'] ?></li>
+            </ul>
+        </div>
     </div>
-</section>
+    <?php unset($_SESSION['success']);
+} ?>
+
+<main class="container" id="delete">
+    <section>
+        <div class="columns is-centered login-form">
+            <div class="column is-one-third">
+                <h1 class="login-head">Log in</h1>
+
+                <!-- Display errors if there are any -->
+                <?php if (!empty($errors)) { ?>
+                    <ul>
+                        <?php foreach ($errors as $error) { ?>
+                            <li class="has-text-danger"> <?= $error ?> </li>
+                        <?php } ?>
+                    </ul>
+                <?php } ?>
+
+                <form class="login-form" action="" method="post">
+                    <!-- Email -->
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="text" name="email" id="email" value="<?= htmlentities($_POST['email'] ?? '') ?>" required>
+                        </div>
+                    </div>
+
+                    <!-- Wachtwoord -->
+                    <div class="field">
+                        <label class="label">Wachtwoord</label>
+                        <div class="control">
+                            <input class="input" type="password" name="password" id="password" required>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="field">
+                        <div class="control">
+                            <input class="button is-primary" type="submit" name="submit" value="Log in">
+                        </div>
+                    </div>
+                </form>
+
+                <h2>Nog geen account?</h2>
+                <a href="<?= BASE_PATH ?>register">Maak een nieuw account aan</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer></footer>

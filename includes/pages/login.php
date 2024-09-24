@@ -1,72 +1,78 @@
 <?php
-//Always add the title of the page here
-$title = 'Login';
 
-/** @var mysqli $db */
-/** @var array $errors */
+$title = 'log in';
 
-$login = false;
+use classes\User;
+use classes\Database;
 
+// Start session (indien nog niet gestart)
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-$errorEmail = '';
-$errorPassword = '';
+//Check if already logged in
+if (isset($_SESSION['email'])) {
+    // Redirect to home page
+    header('Location: home');
+    exit; // Prevent further code execution
+}
 
-// Is from submitted?
+$errors = [];
+
+// Check if form has been submitted
 if (isset($_POST['submit'])) {
-
-    // Get form data
-    $email = mysqli_escape_string($db, $_POST['email']);
-    $password = mysqli_escape_string($db, $_POST['password']);
-
-    // Server-side validation
-    if (isset($_POST['email'], $_POST['password'])) {
-        if (empty($_POST['email'])) {
-            $errorEmail = 'Vul je email in';
+    // Validate email
+    if (!empty($_POST['email'])) {
+        if (strpos($_POST['email'], '@') === false) {
+            $errors['email'] = 'Email moet een @ bevatten.';
         }
-
-        if (empty($_POST['password'])) {
-            $errorPassword = 'Vul je wachtwoord in';
-        }
+    } else {
+        $errors['email'] = 'Email mag niet leeg zijn.';
     }
 
-    // If data valid
-    if (empty($errorEmail) && empty($errorPassword)) {
+    // Validate password
+    if (empty($_POST['password'])) {
+        $errors['password'] = 'Wachtwoord mag niet leeg zijn.';
+    }
 
-        // SELECT the user from the database, based on the email address.
-        $query = "SELECT * FROM users WHERE email = '$email'";
-        $result = mysqli_query($db, $query);
+    // Check if there are no validation errors
+    if (empty($errors)) {
+        // Connect to the database
+        $db = Database::connect();
 
-        // check if the user exists
-        if ($result) {
-
-            // Get user data from result
-            $user = mysqli_fetch_assoc($result);
-            $hash = $user['password'];
-
-            // Check if the provided password matches the stored password in the database
-            if (password_verify($password, $hash)) {
-
-                // Store the user in the session
-                $_SESSION['user'] = [
-                    'name' => $user['first_name'],
-                    'email' => $user['email'],
-                ];
-
-
-                $_SESSION["user_id"] = $user['id'];
-
-                // Redirect to secure page
-                header('Location: secure.php');
-                exit;
-            } else {
-
-                // Credentials not valid
-                $errors['loginFailed'] = 'Incorrect login credentials.';
-            }
+        // Check if the email exists in the database
+        $user = User::selectByEmail($db, $_POST['email']);
+        if (!$user) {
+            // Add error if email not found
+            $errors[] = 'Gebruiker niet gevonden, probeer het opnieuw.';
         } else {
-            // User doesn't exist
-            $errors['loginFailed'] = 'No User found.';
+            // Verify password
+            if (password_verify($_POST['password'], $user['password'])) {
+                // Set session variables
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
+
+                // Handle profile image
+                //if (file_exists('includes/images/uploaded/' . $user['profile_image_path'])) {
+                  //  $_SESSION['image'] = $user['profile_image_path'];
+                //} else {
+                    // Update image if not found (if needed)
+                   // User::updateImage($db, $user['id']);
+               // }
+
+                // Redirect to home page
+                header('Location: home');
+                exit; // Prevent further code execution
+            } else {
+                // Add error if password is incorrect
+                $errors[] = 'Onjuiste inloggegevens, probeer het opnieuw.';
+            }
         }
+
+        // Disconnect from database
+        Database::disconnect();
     }
 }
+
 ?>
