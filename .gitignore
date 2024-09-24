@@ -1,2 +1,4 @@
 /vendor/
 /includes/vendor/
+/.idea
+settings.php
