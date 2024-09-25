@@ -4,14 +4,13 @@
     box-sizing: border-box;
 }
 
-#debugHome {
-    width: 50vw;
-    margin: 3vw auto;
-    padding: 1vw;
+@font-face {
+    font-family: 'Kode Mono';
+    src: url("fonts/KodeMono-VariableFont_wght.ttf");
+    font-weight: normal;
+    font-style: normal;
 }
 
-#debugLinks {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
+body {
+    font-family: 'Kode Mono', sans-serif;
 }
