@@ -42,6 +42,13 @@ if (isset($_POST['submit'])) {
         $errors['email'] = 'Email is al in gebruik.';
     }
 
+    // Validatie voor wachtwoord herhaling
+    if (empty($_POST['passwordConfirm'])) {
+        $errors['passwordConfirm'] = 'Herhaal je wachtwoord';
+    } else if ($_POST['password'] !== $_POST['passwordConfirm']) {
+        $errors['passwordConfirm'] = 'Wachtwoord niet goed herhaald';
+    }
+
     // Validatie voor profielfoto
     if (!empty($_FILES['image']['type'])) {
         if ($_FILES['image']['type'] != 'image/png' && $_FILES['image']['type'] != 'image/jpg' && $_FILES['image']['type'] != 'image/jpeg') {

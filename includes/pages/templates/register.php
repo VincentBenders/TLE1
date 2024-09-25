@@ -25,6 +25,13 @@
                    value="<?= htmlentities($_POST['password'] ?? '') ?>">
         </div>
 
+        <!-- Wachtwoord controle -->
+        <div>
+            <label for="passwordConfirm">Herhaal wachtwoord</label>
+            <input type="password" placeholder="Wachtwoord" name="passwordConfirm" id="passwordConfirm"
+                   value="<?= htmlentities($_POST['passwordConfirm'] ?? '') ?>">
+        </div>
+
         <!-- Profielfoto -->
 
         <div class="control">
