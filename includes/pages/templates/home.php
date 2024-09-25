@@ -1,4 +1,4 @@
-<section id="home">
+<main id="home">
 
     <section id="homeTop">
 
@@ -59,5 +59,5 @@
     </section>
 
 
-</section>
+</main>
 
