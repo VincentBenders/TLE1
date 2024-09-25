@@ -1,4 +1,5 @@
 <main id="createMain">
+
     <h2>Create new object</h2>
 
     <form action="" method="post" enctype="multipart/form-data">
@@ -38,4 +39,5 @@
     </form>
 
     <a href="<?= BASE_PATH ?>home">&laquo; Go back</a>
+
 </main>
