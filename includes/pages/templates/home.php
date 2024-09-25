@@ -46,15 +46,15 @@
 
     <section id="homeBottom">
 
-        <button id="createNewObject">
+        <a href="<?= BASE_PATH ?>create" id="createNewObject">
             Create new
             <svg></svg>
-        </button>
+        </a>
 
-        <button id="viewPublicObjects">
+        <a href="<?= BASE_PATH ?>showcase" id="viewPublicObjects">
             View public items
             <svg></svg>
-        </button>
+        </a>
 
     </section>
 
