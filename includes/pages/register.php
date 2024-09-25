@@ -2,6 +2,13 @@
 
 $title = 'register';
 
+//Check if the user is already logged in
+if (isset($_SESSION['userId'])) {
+    //if so, send them back to home
+    header('location: home');
+    exit;
+}
+
 // Als de submit-knop is ingedrukt
 if (isset($_POST['submit'])) {
 
@@ -63,7 +70,7 @@ if (isset($_POST['submit'])) {
             // Sluit de databaseverbinding
             classes\Database::disconnect();
 
-            // Redirect naar de loginpagina
+            // Redirect naar de login pagina
             header('location: login');
             $_SESSION['success'] = 'Account is succesvol aangemaakt.';
             exit;
