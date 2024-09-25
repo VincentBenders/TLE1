@@ -34,7 +34,7 @@
 
         <!-- Profielfoto -->
 
-        <div class="control">
+        <div>
             <label for="image">Profiel foto</label>
             <input type="file" name="image" id="image">
         </div>
