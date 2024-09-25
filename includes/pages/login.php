@@ -5,13 +5,8 @@ $title = 'log in';
 use classes\User;
 use classes\Database;
 
-// Start session (indien nog niet gestart)
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 //Check if already logged in
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['userId'])) {
     // Redirect to home page
     header('Location: home');
     exit; // Prevent further code execution
@@ -50,7 +45,7 @@ if (isset($_POST['submit'])) {
             if (password_verify($_POST['password'], $user['password'])) {
                 // Set session variables
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['id'] = $user['id'];
+                $_SESSION['userId'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
 
                 // Handle profile image
@@ -74,5 +69,3 @@ if (isset($_POST['submit'])) {
         Database::disconnect();
     }
 }
-
-?>
