@@ -2,6 +2,14 @@
 //Always add the title of the page here
 $title = 'Edit';
 
+//Check if the user has logged in
+if (!isset($_SESSION['userId'])) {
+    //If not, send them to the login page
+    header("Location: login");
+    exit;
+}
+
+
 /** @var mysqli $db */
 
     $db = \classes\Database::connect();

@@ -2,6 +2,13 @@
 //Always add the title of the page here
 $title = 'Details';
 
+//Check if the user has logged in
+if (!isset($_SESSION['userId'])) {
+    //If not, send them to the login page
+    header("Location: login");
+    exit;
+}
+
 //Make sure there's an id in the url
 if (!isset($_GET['id'])) {
     //If not, send them back home
