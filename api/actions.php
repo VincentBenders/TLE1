@@ -23,11 +23,11 @@ function getItemDetailsById($db, $objectId)
  */
 function getAllPublicItems($db)
 {
-    $statement = $db->prepare("SELECT * FROM objects WHERE share = 0");
+    $statement = $db->prepare("SELECT * FROM objects WHERE share = :share");
 
     $statement->bindValue(':share', 0);
 
     $statement->execute();
 
-    return $statement->fetch(PDO::FETCH_ASSOC);
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
