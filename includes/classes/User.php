@@ -74,6 +74,16 @@ class User
         return $statement->execute();
     }
 
+    public static function updateImage($db, $id)
+    {
+        $statement = $db->prepare('UPDATE users SET profile_image_path = :profile_image_path WHERE id = :id');
+
+        $statement->bindValue(':id', $id);
+        $statement->bindValue(':image', null);
+
+        return $statement->execute();
+    }
+
     // Update het wachtwoord van de gebruiker
     public static function updatePassword($db, $id, $passwordHash): bool
     {
