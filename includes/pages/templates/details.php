@@ -1,18 +1,26 @@
-<div>
-            <section>
-                <h2><?= htmlentities($objectData['name']) ?> details</h2>
+<main id="detailsMain">
 
-                <ul>
-                    <li>Description: <?= htmlentities($objectData['description']) ?></li>
-                    <li>Image: <?= htmlentities($objectData['file_path']) ?></li>
-                    <li>User that published this object: <?= htmlentities($objectData['user_id']) ?></li>
-                </ul>
+    <?php if (isset($objectData)) { ?>
 
-                <div>
-                    <a class="button" href="index.php">Go back to the list</a>
-                </div>
+        <section id="details">
 
-            </section>
+            <h2><?= htmlentities($objectData['name']) ?></h2>
 
-</div>
+            <p><?= htmlentities($objectData['description']) ?></p>
+
+            <div>
+                <p>Share level</p>
+                <p><?= $objectData['share'] ?></p>
+            </div>
+
+        </section>
+
+    <?php } ?>
+
+    <section id="detailLinks">
+        <a href="">Preview</a>
+        <a href="<?= BASE_PATH ?>home">Go back</a>
+    </section>
+
+</main>
 
