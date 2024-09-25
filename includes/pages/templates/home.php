@@ -1,26 +1,63 @@
-<section id="debugHome">
+<main id="home">
 
-    <h1>Home</h1>
+    <section id="homeTop">
 
-    <div>
-        <p>This is the home page, you should be able to get everywhere else from here</p>
+        <h1>Your items</h1>
 
-        <div id="debugLinks">
-            <block>
-                <a href="<?= BASE_PATH ?>create">create page</a>
-                <a href="<?= BASE_PATH ?>delete">delete page</a>
-                <a href="<?= BASE_PATH ?>details">details page</a>
-                <a href="<?= BASE_PATH ?>edit">edit page</a>
-            </block>
-            <block>
-                <a href="<?= BASE_PATH ?>login">login page</a>
-                <a href="<?= BASE_PATH ?>logout">logout page</a>
-                <a href="<?= BASE_PATH ?>register">register page</a>
-                <a href="<?= BASE_PATH ?>secure">secure page</a>
-            </block>
+        <button>Filter</button>
+
+        <div id="filterContainer">
 
         </div>
-    </div>
 
-</section>
+        <a href="<?= BASE_PATH ?>profile">
+            <p></p>
+            <img src="" alt="Profile picture">
+            <svg></svg>
+        </a>
+
+    </section>
+
+    <section id="objectDisplay">
+
+        <div id="objectDisplayTop">
+
+            <div id="objectContainer">
+
+            </div>
+
+            <div id="scrollWheel">
+
+            </div>
+
+        </div>
+
+        <div id="searchBarContainer">
+
+            <form action="" id="searchBar">
+                <label for="search">Search</label>
+                <input type="text" id="search" name="search">
+            </form>
+
+        </div>
+
+
+    </section>
+
+    <section id="homeBottom">
+
+        <a href="<?= BASE_PATH ?>create" id="createNewObject">
+            Create new
+            <svg></svg>
+        </a>
+
+        <a href="<?= BASE_PATH ?>showcase" id="viewPublicObjects">
+            View public items
+            <svg></svg>
+        </a>
+
+    </section>
+
+
+</main>
 

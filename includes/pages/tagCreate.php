@@ -3,6 +3,13 @@
 //Remember to add the title
 $title = 'Create new tag';
 
+//Check if the user has logged in
+if (!isset($_SESSION['userId'])) {
+    //If not, send them to the login page
+    header("Location: login");
+    exit;
+}
+
 //Create an empty array for storing any form input errors
 $validationErrors = [];
 

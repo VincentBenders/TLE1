@@ -2,6 +2,13 @@
 
 $title = 'register';
 
+//Check if the user is already logged in
+if (isset($_SESSION['userId'])) {
+    //if so, send them back to home
+    header('location: home');
+    exit;
+}
+
 // Als de submit-knop is ingedrukt
 if (isset($_POST['submit'])) {
 
@@ -35,6 +42,13 @@ if (isset($_POST['submit'])) {
         $errors['email'] = 'Email is al in gebruik.';
     }
 
+    // Validatie voor wachtwoord herhaling
+    if (empty($_POST['passwordConfirm'])) {
+        $errors['passwordConfirm'] = 'Herhaal je wachtwoord';
+    } else if ($_POST['password'] !== $_POST['passwordConfirm']) {
+        $errors['passwordConfirm'] = 'Wachtwoord niet goed herhaald';
+    }
+
     // Validatie voor profielfoto
     if (!empty($_FILES['image']['type'])) {
         if ($_FILES['image']['type'] != 'image/png' && $_FILES['image']['type'] != 'image/jpg' && $_FILES['image']['type'] != 'image/jpeg') {
@@ -63,7 +77,7 @@ if (isset($_POST['submit'])) {
             // Sluit de databaseverbinding
             classes\Database::disconnect();
 
-            // Redirect naar de loginpagina
+            // Redirect naar de login pagina
             header('location: login');
             $_SESSION['success'] = 'Account is succesvol aangemaakt.';
             exit;

@@ -1,9 +1,15 @@
-// File upload fixen
 <?php
 
-/** @var mysqli $db */
 //Remember to add the title
 $title = 'Create new object';
+
+//Check if the user has logged in
+if (!isset($_SESSION['userId'])) {
+    //If not, send them to the login page
+    header("Location: login");
+    exit;
+}
+
 
 $validationErrors = [];
 
@@ -17,8 +23,8 @@ if (isset($_POST['submit'])) {
     if (empty($_POST['description'])) {
         $validationErrors[] = 'Description cannot be empty!';
     }
-    if (empty($_POST['file_path'])) {
-        $validationErrors[] = 'Filepath cannot be empty!';
+    if (empty($_FILES['object']['type'])) {
+        $validationErrors[] = 'You must upload an object file';
     }
 
     //If the form has been correctly filled in
@@ -31,10 +37,11 @@ if (isset($_POST['submit'])) {
         $newObject['description'] = $_POST['description'];
 
         //Save the uploaded file
+        // TODO: Change this from an image to a .obj file
 
-    if (!empty($_FILES['image'])) {
+    if (!empty($_FILES['object'])) {
         $image = new \classes\Image();
-        $newObject['file_path'] = $image->save($_FILES['image']);
+        $newObject['file_path'] = $image->save($_FILES['object']);
     }
 
 
@@ -42,9 +49,10 @@ if (isset($_POST['submit'])) {
         $db = \classes\Database::connect();
 
         //Prepare the SQL query and statement
-        $statement = $db->prepare('INSERT INTO objects (user_id, name, description, file_path, share) VALUES(1, :name, :description, :file_path, 1)');
+        $statement = $db->prepare('INSERT INTO objects (user_id, name, description, file_path, share) VALUES(:user_id, :name, :description, :file_path, 1)');
 
         //Bind the values to the placeholders
+        $statement->bindValue(':user_id', $_SESSION['userId']);
         $statement->bindValue(':name', $newObject['name']);
         $statement->bindValue(':description', $newObject['description']);
         $statement->bindValue(':file_path', $newObject['file_path']);

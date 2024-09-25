@@ -7,14 +7,8 @@ require_once 'includes/initialize.php';
 <head>
     <meta charset="UTF-8">
     <title><?= $title ?? 'Error: Title not set' ?></title>
-    <link rel="stylesheet" href="includes/css/preview.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
-<nav>
-    <a href="<?= BASE_PATH ?>login">login page</a>
-    <a href="<?= BASE_PATH ?>register">register page</a>
-    <a href="<?= BASE_PATH ?>logout">logout page</a>
-</nav>
 
 <body>
 

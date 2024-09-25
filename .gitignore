@@ -1,5 +1,5 @@
 /vendor/
-/includes/vendor/git
+/includes/vendor/
 settings.php
 .idea
 /node_modules

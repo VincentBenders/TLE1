@@ -1,47 +1,43 @@
-<section>
+<main id="createMain">
+
     <h2>Create new object</h2>
 
-    <?php if (!empty($_SESSION['success'])) { ?>
-
-        <h2 style="color:white"><?= $_SESSION['success'] ?></h2>
-
-        <?php $_SESSION['success'] = ''; ?>
-
-    <?php } ?>
-
-    <?php if (!empty($validationErrors)) { ?>
-
-        <ul>
-
-            <?php foreach ($validationErrors as $validationError) { ?>
-                <li style="color:white"><?= $validationError ?></li>
-            <?php } ?>
-
-        </ul>
-
-    <?php } ?>
-
-
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
 
         <div>
             <label for="name">Name</label>
-            <input id="name" type="text" name="name" value="">
+            <input id="name" type="text" name="name" value="<?= htmlentities(($_POST['name']) ?? '') ?? '' ?>">
         </div>
 
         <div>
             <label for="description">Description</label>
-            <input id="description" type="text" name="description" value="">
+            <input id="description" type="text" name="description" value="<?= htmlentities(($_POST['description']) ?? '') ?? '' ?>">
         </div>
 
         <div>
-            <label for="file_path">3d image link</label>
-            <input id="file_path" type="file" name="file_path" value="">
+            <label for="object">Object</label>
+            <input id="object" type="file" name="object">
+        </div>
+
+        <div>
+            <h3>Share level</h3>
+
+            <div>
+                <label for="private">Private</label>
+                <input id="private" type="radio" name="share" value="0" <?= ($_POST['share'] ?? '0') === '0' ? 'checked' : '' ?>>
+            </div>
+
+            <div>
+                <label for="public">Public</label>
+                <input id="public" type="radio" name="share" value="1" <?= ($_POST['share'] ?? '') === '1' ? 'checked' : '' ?>>
+            </div>
+
         </div>
 
         <button type="submit" name="submit">Save</button>
 
     </form>
 
-    <a href="<?= BASE_PATH ?>index.php">&laquo; Go back to the list</a>
-</section>
+    <a href="<?= BASE_PATH ?>home">&laquo; Go back</a>
+
+</main>
