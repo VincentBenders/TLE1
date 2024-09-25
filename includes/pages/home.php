@@ -3,4 +3,10 @@
 //Always remember to set the title
 $title = 'home';
 
-//Do stuff for the home page
+//Check if the user has logged in
+if (!isset($_SESSION['userId'])) {
+    //If not, send them to the login page
+    header("Location: login.php");
+    exit;
+}
+
