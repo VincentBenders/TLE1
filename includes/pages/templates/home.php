@@ -56,6 +56,11 @@
             <svg></svg>
         </a>
 
+        <a href="<?= BASE_PATH ?>Logout">
+            Logout
+            <svg></svg>
+        </a>
+
     </section>
 
 
