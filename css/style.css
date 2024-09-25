@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    --green: #88D18A;
+    --lightGreen: #CCDDB7;
+    --grey: #6A5B6E;
+    --melon: #F0B7B3;
+    --ourple: #A833B9;
+}
+
 @font-face {
     font-family: 'Kode Mono';
     src: url("fonts/KodeMono-VariableFont_wght.ttf");
@@ -13,4 +21,18 @@
 
 body {
     font-family: 'Kode Mono', sans-serif;
+
+    background-color: black;
+    color: white;
+
+}
+
+a:active {
+    color: var(--green);
+}
+
+main {
+    padding: 2vw;
+    margin: 5vh auto;
+    width: 60vw;
 }
