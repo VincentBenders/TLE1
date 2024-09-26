@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
 
         $newObject['name'] = $_POST['name'];
         $newObject['description'] = $_POST['description'];
+        $newObject['share'] = intval($_POST['share']);
 
         //Save the uploaded file
         // TODO: Change this from an image to a .obj file
@@ -49,13 +50,14 @@ if (isset($_POST['submit'])) {
         $db = \classes\Database::connect();
 
         //Prepare the SQL query and statement
-        $statement = $db->prepare('INSERT INTO objects (user_id, name, description, file_path, share) VALUES(:user_id, :name, :description, :file_path, 1)');
+        $statement = $db->prepare('INSERT INTO objects (user_id, name, description, file_path, share) VALUES(:user_id, :name, :description, :file_path, :share)');
 
         //Bind the values to the placeholders
         $statement->bindValue(':user_id', $_SESSION['userId']);
         $statement->bindValue(':name', $newObject['name']);
         $statement->bindValue(':description', $newObject['description']);
         $statement->bindValue(':file_path', $newObject['file_path']);
+        $statement->bindValue(':share', $newObject['share']);
 
 
         //Perform the query on the database
