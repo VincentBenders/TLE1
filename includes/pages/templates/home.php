@@ -12,7 +12,7 @@
 
         <a href="<?= BASE_PATH ?>profile">
             <p></p>
-            <img src="" alt="Profile picture">
+            <img src="" alt="Profile">
             <svg></svg>
         </a>
 
