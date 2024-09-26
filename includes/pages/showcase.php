@@ -18,7 +18,7 @@ $objects = \classes\ReplicatorObject::getAllPublic($db);
 
 //If the objects weren't able to get fetched, show an error
 if (!$objects) {
-    $objects = ['Error' => "The public objects couldn't be loaded! please try again later"];
+    $objects = ['description' => "The public objects couldn't be loaded! please try again later", 'name' => '', 'user_name' => '', 'id' => '0'];
 }
 
 //Finally, disconnect from the database
