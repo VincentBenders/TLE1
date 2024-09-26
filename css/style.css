@@ -48,3 +48,42 @@ main {
     margin: 5vh auto;
     width: 60vw;
 }
+
+#objectDisplay {
+    border: 2px solid var(--green);
+    border-radius: 6px;
+}
+
+#objectContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    border-bottom: 2px solid var(--green);
+    width: 50vw;
+    height: 40vh;
+    gap: 1vw;
+    padding: 1vw;
+}
+
+.listObject {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vw;
+    border: 2px solid var(--lightGreen);
+    border-radius: 6px;
+    justify-content: space-between;
+    gap: 0.2vw;
+
+    img {
+        filter: invert(39%) sepia(15%) saturate(501%) hue-rotate(242deg) brightness(89%) contrast(87%);
+    }
+}
+
+article.favorite {
+    border-color: var(--melon);
+}
+
+img.favorite {
+    filter: invert(78%) sepia(23%) saturate(405%) hue-rotate(315deg) brightness(95%) contrast(97%);
+}
+
