@@ -27,8 +27,20 @@ body {
 
 }
 
-a:active {
+a:link {
     color: var(--green);
+}
+
+a:visited {
+    color: var(--lightGreen);
+}
+
+a:hover {
+    color: var(--ourple);
+}
+
+a:active {
+    color: var(--melon);
 }
 
 main {
