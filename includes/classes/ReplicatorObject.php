@@ -96,7 +96,7 @@ class ReplicatorObject
     {
 
         //Prepare the sql query
-        $statement = $db->prepare('SELECT * FROM objects WHERE share = 0');
+        $statement = $db->prepare('SELECT objects.*, users.name AS user_name FROM objects LEFT JOIN users ON objects.user_id = users.id WHERE share = 1');
 
         //Perform the query in the database
         if ($statement->execute()) {
