@@ -12,17 +12,20 @@
 
         <!-- Wachtwoord -->
         <div>
-            <label for="password">Wachtwoord</label>
+            <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
         </div>
 
         <!-- Submit Button -->
-        <input type="submit" name="submit" value="Log in" class="button">
+        <button type="submit" name="submit" value="Log in" id="submit" class="button">
+            Log in <img src="<?= BASE_PATH ?>includes/images/checkmark-icon.svg" alt="" class="grey">
+        </button>
+        
     </form>
 
     <div>
-        <h2>Nog geen account?</h2>
-        <a href="<?= BASE_PATH ?>register" class="button">Maak een nieuw account aan <img
+        <h2>No account yet?</h2>
+        <a href="<?= BASE_PATH ?>register" class="button">Create a new account <img
                     src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white"></a>
     </div>
 

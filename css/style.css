@@ -60,15 +60,20 @@ h3 {
     font-size: 1.6rem;
 }
 
-p {
+p,
+label {
     font-size: 1.2rem;
 }
 
-a {
+a,
+button[type=submit] {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5vw;
+
+    border: none;
+    font-family: 'Kode Mono', sans-serif;
     font-size: 1.2rem;
     flex: 1 1;
 
@@ -95,11 +100,7 @@ input:active {
     border: 2px solid var(--green);
 }
 
-input[type=submit] {
-    border: none;
-}
-
-input[type=submit]:active {
+button[type=submit]:active {
     color: var(--green);
 }
 
