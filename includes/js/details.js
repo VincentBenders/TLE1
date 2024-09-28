@@ -17,7 +17,7 @@ function loadObjects(data) {
 
     section = document.querySelector("section");
 
-    for(object of data) {
+    for(let object of data) {
 
         let div = document.createElement("div");
         let h2 = document.createElement("h2");
@@ -38,6 +38,7 @@ function loadObjects(data) {
 
         link.addEventListener('click', () => {
 
+            section.innerHTML = '';
             fetchDetails(object.id);
 
         });
@@ -52,9 +53,6 @@ function loadObjects(data) {
 
 function loadObjectDetails(data) {
     console.log(data);
-
-    // Clear the section element
-    section.innerHTML = '';
 
     // Create a new div element to display the object details
     let div = document.createElement("div");
