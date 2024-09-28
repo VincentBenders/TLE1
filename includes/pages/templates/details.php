@@ -1,25 +1,11 @@
+
+
 <main id="detailsMain">
 
-    <?php if (isset($objectData)) { ?>
+<script src="includes/js/details.js"></script>
 
-        <section id="details">
+    <section>
 
-            <h2><?= htmlentities($objectData['name']) ?></h2>
-
-            <p><?= htmlentities($objectData['description']) ?></p>
-
-            <div>
-                <p>Share level</p>
-                <p><?= $objectData['share'] ?></p>
-            </div>
-
-        </section>
-
-    <?php } ?>
-
-    <section id="detailLinks">
-        <a href="">Preview</a>
-        <a href="<?= BASE_PATH ?>home">Go back</a>
     </section>
 
 </main>
