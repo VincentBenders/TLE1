@@ -4,13 +4,16 @@
 </script>
 <script src="<?= BASE_PATH ?>/includes/js/showcase.js"></script>
 
-<main id="showcaseMain">
+<main id="homeMain">
 
     <section id="homeTop">
 
         <h1>Showcase</h1>
 
-        <button>Filter</button>
+        <button class="button">
+            Filter
+            <img src="<?= BASE_PATH ?>includes/images/filter-icon.svg" alt="" class="white">
+        </button>
 
         <div id="filterContainer">
 
@@ -18,11 +21,12 @@
 
     </section>
 
-    <section id="objectDisplay">
+
+    <section id="objectDisplay" class="extrude">
 
         <div id="objectDisplayTop">
 
-            <div id="objectContainer">
+            <div id="objectContainer" class="indent">
 
             </div>
 
@@ -43,4 +47,15 @@
 
     </section>
 
+
+    <section id="homeBottom">
+
+        <a href="<?= BASE_PATH ?>home" class="button">
+            Go back
+            <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
+        </a>
+
+    </section>
+
 </main>
+
