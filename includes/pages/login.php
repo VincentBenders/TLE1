@@ -48,13 +48,14 @@ if (isset($_POST['submit'])) {
                 $_SESSION['userId'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
 
-                // Handle profile image
-                //if (file_exists('includes/images/uploaded/' . $user['profile_image_path'])) {
-                    //$_SESSION['image'] = $user['profile_image_path'];
-                //} else {
-                    // Update image if not found (if needed)
-                   //User::updateImage($db, $user['id']);
-               //}
+                //Handle profile image
+                $imagePath = 'includes/uploaded/images/' . $user['profile_image_path'];
+                if (file_exists($imagePath)) {
+                    $_SESSION['image'] = $user['profile_image_path'];
+//                } else {
+//                    //Update image if not found (if needed)
+//                    User::updateImage($db, $user['id']);
+                }
 
                 // Redirect to home page
                 header('Location: home');

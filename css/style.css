@@ -71,7 +71,7 @@ label {
 }
 
 a,
-button[type=submit] {
+button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -181,20 +181,61 @@ main {
     }
 }
 
+#homeMain {
+    display: flex;
+    flex-direction: column;
+}
+
+#homeTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1vw;
+    align-items: center;
+}
+
 #objectDisplay {
-    border: 2px solid var(--green);
     border-radius: var(--borderRadius);
+    width: 100%;
+    margin: 1vw 0;
 }
 
 #objectContainer {
     display: flex;
     flex-direction: column;
-    overflow: scroll;
-    border-bottom: 2px solid var(--green);
-    width: 50vw;
-    height: 40vh;
+    overflow: auto;
+    width: 90%;
+    height: 50vh;
     gap: 1vw;
     padding: 1vw;
+    margin: 1vw;
+}
+
+#searchBarContainer {
+    padding: 0 1vw;
+    margin-bottom: 1vw;
+    width: 90%;
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1vw;
+
+        input {
+            width: 75%;
+        }
+    }
+}
+
+#homeBottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1vw;
 }
 
 .listObject {
@@ -235,14 +276,23 @@ img.favorite {
     cursor: pointer;
     color: var(--green);
 
-    img {
+    img:not(.profilePicture) {
         filter: var(--greenFilter);
     }
+
+    img.profilePicture {
+        border-color: var(--green);
+    }
+
 }
 
 .button:active {
     background-color: var(--darkGrey);
     box-shadow: var(--indentShadow);
+}
+
+.cross {
+  transform: rotate(45deg);
 }
 
 .extrude {
@@ -278,4 +328,9 @@ img.purple {
 
 img.white {
     filter: invert(100%);
+}
+
+.profilePicture {
+    border: 2px solid white;
+    border-radius: 100%;
 }

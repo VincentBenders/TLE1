@@ -10,3 +10,11 @@ if (!isset($_SESSION['userId'])) {
     exit;
 }
 
+if (empty($_SESSION['image'])) {
+    $profilePicturePath = BASE_PATH . 'includes/images/default-profile-picture.svg';
+    $class = 'white';
+} else {
+    $profilePicturePath = BASE_PATH . 'includes/uploaded/images/' . $_SESSION['image'];
+    $class = 'profilePicture';
+}
+

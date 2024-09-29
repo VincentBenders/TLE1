@@ -1,28 +1,32 @@
-<main id="home">
+<main id="homeMain">
 
     <section id="homeTop">
 
         <h1>Your items</h1>
 
-        <button>Filter</button>
+        <button class="button">
+            Filter
+            <img src="<?= BASE_PATH ?>includes/images/filter-icon.svg" alt="" class="white">
+        </button>
 
         <div id="filterContainer">
 
         </div>
 
-        <a href="<?= BASE_PATH ?>profile">
-            <p></p>
-            <img src="" alt="Profile">
-            <svg></svg>
+        <a href="<?= BASE_PATH ?>profile" class="button">
+            <?= htmlentities($_SESSION['name']) ?>
+            <img src="<?= $profilePicturePath ?? '' ?>" alt="Profile picture" class="<?= $class ?? '' ?>">
+            <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
         </a>
 
     </section>
 
-    <section id="objectDisplay">
+
+    <section id="objectDisplay" class="extrude">
 
         <div id="objectDisplayTop">
 
-            <div id="objectContainer">
+            <div id="objectContainer" class="indent">
 
             </div>
 
@@ -41,28 +45,27 @@
 
         </div>
 
-
     </section>
+
 
     <section id="homeBottom">
 
-        <a href="<?= BASE_PATH ?>create" id="createNewObject">
+        <a href="<?= BASE_PATH ?>create" id="createNewObject" class="button">
             Create new
-            <svg></svg>
+            <img src="<?= BASE_PATH ?>includes/images/plus-icon.svg" alt="" class="green">
         </a>
 
-        <a href="<?= BASE_PATH ?>showcase" id="viewPublicObjects">
+        <a href="<?= BASE_PATH ?>showcase" id="viewPublicObjects" class="button">
             View public items
-            <svg></svg>
+            <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
         </a>
 
-        <a href="<?= BASE_PATH ?>Logout">
+        <a href="<?= BASE_PATH ?>Logout" class="button">
             Logout
-            <svg></svg>
+            <img src="<?= BASE_PATH ?>includes/images/plus-icon.svg" alt="" class="purple cross">
         </a>
 
     </section>
-
 
 </main>
 
