@@ -18,3 +18,11 @@ if (empty($_SESSION['image'])) {
     $class = 'profilePicture';
 }
 
+//Connect to the database
+$db = \classes\Database::connect();
+
+$objects = \classes\ReplicatorObject::getByUserId($_SESSION['userId'], $db);
+
+//Finally, disconnect from the database
+\classes\Database::disconnect();
+

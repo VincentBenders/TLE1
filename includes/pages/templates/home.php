@@ -1,9 +1,15 @@
+<script src="<?= BASE_PATH ?>/includes/js/home.js"></script>
+<script>
+    let Objects = <?= json_encode($objects ?? '') ?? '' ?>;
+    let BASE_PATH = <?= BASE_PATH ?>;
+</script>
+
 <main id="homeMain">
 
     <section id="homeTop">
 
         <h1>Your items</h1>
-
+l
         <button class="button">
             Filter
             <img src="<?= BASE_PATH ?>includes/images/filter-icon.svg" alt="" class="white">
@@ -27,6 +33,8 @@
         <div id="objectDisplayTop">
 
             <div id="objectContainer" class="indent">
+
+
 
             </div>
 
