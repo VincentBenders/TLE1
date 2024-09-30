@@ -9,6 +9,8 @@
     </style>
   </head>
   <body>
+
+    <div id="3Dbody" class="myclass"></div>
     <!-- Import map to resolve module paths -->
     <script type="importmap">
       {
@@ -33,8 +35,10 @@
 
       // Create a renderer
       const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(500, 500);
       document.body.appendChild(renderer.domElement);
+      console.log(document.querySelector(".myclass"));
+
 
       // Add lighting
       const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -44,9 +48,11 @@
       // Load a 3D model (GLTF format)
       const loader = new GLTFLoader();
       loader.load(
-        'http://localhost/TLE1/includes/3dobjects//object.glb',
+        'http://localhost/TLE1/includes/uploaded/objects//087e288a07c373516f2c19dc21b7e7877df5af73.glb',
         (gltf) => {
           const model = gltf.scene;
+          model.scale.set(10, 10, 10);  // Change these values based on the model size
+          model.position.set(0, -1, 0);  // Center the model in the scene
           scene.add(model);
           animate();
         },
