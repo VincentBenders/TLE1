@@ -40,7 +40,7 @@
                     Profiel foto:
                 </td>
                 <td>
-                    <img class="image is-64x64" src="includes/images<?= empty($user['profile_image_path']) ? "profile_placeholder.png" : ("uploaded/" . $user['profile_image_path']) ?>" alt="Profiel foto">
+                    <img class="image is-64x64" src="includes/uploaded<?= empty($user['profile_image_path']) ? "profile_placeholder.png" : ("uploaded/" . $user['profile_image_path']) ?>" alt="Profiel foto">
                 </td>
             </tr>
 

@@ -238,6 +238,26 @@ main {
     gap: 1vw;
 }
 
+#createMain {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+#createForm {
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    gap: 1vw;
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5vw;
+    }
+
+}
+
 .listObject {
     display: flex;
     flex-direction: row;

@@ -12,7 +12,12 @@ require_once 'includes/initialize.php';
 
 <body>
 
-<?= $content ?? $errors[] = 'Error: content failed to load' ?>
+<?= $content ?? 'Something went wrong while loading the content! Please check the javascript console for errors' ?>
+
+<script>
+//    Shows errors in the javascript console
+    console.log('<?= !empty($errors) ? (json_encode(print_r($errors, true))) : 'No errors found!' ?>')
+</script>
 
 </body>
 </html>

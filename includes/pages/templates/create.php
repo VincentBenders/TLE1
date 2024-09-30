@@ -1,8 +1,10 @@
+<script src="<?= BASE_PATH ?>/includes/js/customUploadStyling.js"></script>
+
 <main id="createMain">
 
     <h2>Create new object</h2>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" class="extrude" id="createForm">
 
         <div>
             <label for="name">Name</label>
@@ -15,8 +17,13 @@
         </div>
 
         <div>
-            <label for="object">Object</label>
-            <input id="object" type="file" name="object">
+            <label for="image">Upload object</label>
+            <label id="customFileUpload">
+                Upload an object...
+                <input type="file" name="object" id="object">
+                <img src="<?= BASE_PATH ?>includes/images/pencil-icon.svg" alt="" class="grey" id="pencilIcon">
+                <span id="uploadedFileNameContainer"></span>
+            </label>
         </div>
 
         <div>
@@ -34,10 +41,16 @@
 
         </div>
 
-        <button type="submit" name="submit">Save</button>
+        <button type="submit" name="submit" class="button">
+            Save
+            <img src="<?= BASE_PATH ?>includes/images/checkmark-icon.svg" alt="" class="grey">
+        </button>
 
     </form>
 
-    <a href="<?= BASE_PATH ?>home">&laquo; Go back</a>
+    <a href="<?= BASE_PATH ?>home" class="button">
+        Go back
+        <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
+    </a>
 
 </main>

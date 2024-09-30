@@ -13,7 +13,7 @@ function init() {
     pencilIcon = document.getElementById('pencilIcon');
 
     //Add an event listener to the file upload input element
-    document.getElementById('image').addEventListener('change', showFileName);
+    document.querySelector('input[type=file]').addEventListener('change', showFileName);
 
 }
 
