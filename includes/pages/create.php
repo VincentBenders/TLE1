@@ -25,8 +25,8 @@ if (isset($_POST['submit'])) {
     }
     if (empty($_FILES['object']['type'])) {
         $validationErrors[] = 'You must upload an object file';
-    } elseif (pathinfo($_FILES['object']['full_path'])['extension'] !== 'obj') {
-        $validationErrors[] = 'The file must be a .obj file';
+    } elseif (pathinfo($_FILES['object']['full_path'])['extension'] !== 'glb') {
+        $validationErrors[] = 'The file must be a .glb file';
     }
 
     //If the form has been correctly filled in
