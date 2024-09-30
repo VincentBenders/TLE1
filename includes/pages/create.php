@@ -25,6 +25,8 @@ if (isset($_POST['submit'])) {
     }
     if (empty($_FILES['object']['type'])) {
         $validationErrors[] = 'You must upload an object file';
+    } elseif (pathinfo($_FILES['object']['full_path'])['extension'] !== 'obj') {
+        $validationErrors[] = 'The file must be a .obj file';
     }
 
     //If the form has been correctly filled in
@@ -38,12 +40,10 @@ if (isset($_POST['submit'])) {
         $newObject['share'] = intval($_POST['share']);
 
         //Save the uploaded file
-        // TODO: Change this from an image to a .obj file
-
-    if (!empty($_FILES['object'])) {
-        $image = new \classes\Image();
-        $newObject['file_path'] = $image->save($_FILES['object']);
-    }
+        if (!empty($_FILES['object'])) {
+            $objectFile = new \classes\ObjectFile();
+            $newObject['file_path'] = $objectFile->save($_FILES['object']);
+        }
 
 
         //Connect to the database
