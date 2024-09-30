@@ -61,6 +61,7 @@ function showObjects() {
         article.appendChild(nameElement);
         article.appendChild(descriptionButton);
         article.appendChild(userNameButton);
+        article.appendChild(deleteButton);
 
         //Finally add the article to the page
         objectContainer.appendChild(article);
@@ -90,9 +91,8 @@ function objectClickHandler(e) {
             } else if (e.target.classList.contains('editButton')) {
                 action = 'edit';
             }
-            else if (e.target.classList.contains(deleteButton)) {
+            else if (e.target.classList.contains('deleteButton')) {
                 action = 'delete'
-
             }
             break;
         default: return;
