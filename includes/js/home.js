@@ -34,11 +34,21 @@ function showObjects() {
         let nameElement = document.createElement('h3');
         nameElement.innerText = Object.name;
 
-        let descriptionElement = document.createElement('p');
-        descriptionElement.innerText = Object.description;
+        // Create buttons instead of <p> for description and user_name
+        let descriptionButton = document.createElement('button');
+        descriptionButton.innerText = "Details";
+        descriptionButton.classList.add('detailsButton');
+        descriptionButton.dataset.objectId = Object.id; // Assign object ID
 
-        let userNameElement = document.createElement('p');
-        userNameElement.innerText = Object.user_name;
+        let userNameButton = document.createElement('button');
+        userNameButton.innerText = "Edit";
+        userNameButton.classList.add('editButton');
+        userNameButton.dataset.objectId = Object.id; // Assign object ID
+
+        let deleteButton = document.createElement('button');
+        deleteButton.innerText = "Delete";
+        deleteButton.classList.add('deleteButton');
+        deleteButton.dataset.objectId = Object.id; // Assign object ID
 
         //If the user has the object's id in their localstorage, add styling to indicate this
         if (localStorage.getItem(Object.id)) {
@@ -49,8 +59,8 @@ function showObjects() {
         //Append all the elements in order to the article element
         article.appendChild(image);
         article.appendChild(nameElement);
-        article.appendChild(descriptionElement);
-        article.appendChild(userNameElement);
+        article.appendChild(descriptionButton);
+        article.appendChild(userNameButton);
 
         //Finally add the article to the page
         objectContainer.appendChild(article);
@@ -71,9 +81,20 @@ function objectClickHandler(e) {
 
     switch (tagName) {
         case 'ARTICLE': id = e.target.dataset.objectId; action = 'details'; break;
-        case 'H3':
-        case 'P': id = e.target.parentElement.dataset.objectId;  action = 'details'; break;
+        case 'H3': id = e.target.parentElement.dataset.objectId; action = 'details'; break;
         case 'IMG': id = e.target.parentElement.dataset.objectId; action = 'favorite'; break;
+        case 'BUTTON':
+            id = e.target.dataset.objectId;
+            if (e.target.classList.contains('detailsButton')) {
+                action = 'details';
+            } else if (e.target.classList.contains('editButton')) {
+                action = 'edit';
+            }
+            else if (e.target.classList.contains(deleteButton)) {
+                action = 'delete'
+
+            }
+            break;
         default: return;
     }
 
@@ -81,15 +102,24 @@ function objectClickHandler(e) {
     switch (action) {
         case 'details': redirectToDetails(id); break;
         case 'favorite': toggleFavorite(id); break;
+        case 'edit': redirectToEdit(id); break;
+        case 'delete': redirectToDelete(id); break;
     }
 
 }
 
 //Go to the details page
 function redirectToDetails(id) {
-
     window.location.href = (BASE_PATH + 'details?id=' + id);
+}
 
+//Go to the edit page
+function redirectToEdit(id) {
+    window.location.href = (BASE_PATH + 'edit?id=' + id);
+}
+
+function redirectToDelete(id) {
+    window.location.href = (BASE_PATH + 'delete?id=' + id);
 }
 
 //Toggles favorite class and updates the localstorage
