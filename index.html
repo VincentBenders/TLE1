@@ -24,6 +24,10 @@
       import * as THREE from 'three';
       import { GLTFLoader } from 'GLTFLoader';
 
+      const item = 'object.glb';
+      const itemurl = 'http://localhost/TLE1/includes/3dobjects//' + item;
+      
+
       // Set up the scene
       const scene = new THREE.Scene();
 
@@ -44,9 +48,13 @@
       // Load a 3D model (GLTF format)
       const loader = new GLTFLoader();
       loader.load(
-        'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
+        itemurl,
         (gltf) => {
           const model = gltf.scene;
+          // Adjust model scale and position
+    model.scale.set(10, 10, 10);  // Change these values based on the model size
+    model.position.set(0, -1, 0);  // Center the model in the scene
+        // model.
           scene.add(model);
           animate();
         },
