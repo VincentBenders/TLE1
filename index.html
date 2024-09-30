@@ -10,7 +10,7 @@
   </head>
   <body>
 
-    <div id="3Dbody" class="myclass"></div>
+    <div id="3Dbody" class="item"></div>
     <!-- Import map to resolve module paths -->
     <script type="importmap">
       {
@@ -26,6 +26,7 @@
       import * as THREE from 'three';
       import { GLTFLoader } from 'GLTFLoader';
 
+      const div = document.querySelector(".item");
       // Set up the scene
       const scene = new THREE.Scene();
 
@@ -36,8 +37,8 @@
       // Create a renderer
       const renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(500, 500);
-      document.body.appendChild(renderer.domElement);
-      console.log(document.querySelector(".myclass"));
+      div.appendChild(renderer.domElement);
+      console.log(document.querySelector(".item"));
 
 
       // Add lighting
