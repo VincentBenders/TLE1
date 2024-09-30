@@ -34,18 +34,18 @@ class ObjectFile
         }
 
         //You should also check filesize here.
-        if ($uploadFile['size'] > 1000000) {
+        if ($uploadFile['size'] > 100000000) {
             throw new \RuntimeException('Exceeded filesize limit.');
         }
 
         //DO NOT TRUST $uploadFile['mime'] VALUE !!, check MIME Type by yourself.
         //Not doing that right now, sorry Antwan
-        if (pathinfo($uploadFile['full_path'])['extension'] !== 'obj') {
+        if (pathinfo($uploadFile['full_path'])['extension'] !== 'glb') {
             throw new \RuntimeException('Invalid file format.');
         } else {
             //This is not a very flexible way to handle this,
-            //but right now we're only interested in .obj files
-            $ext = 'obj';
+            //but right now we're only interested in .glb files
+            $ext = 'glb';
         }
 
         //You should name it uniquely., DO NOT USE $uploadFile['name'] WITHOUT ANY VALIDATION !!
