@@ -34,7 +34,7 @@ class ObjectFile
         }
 
         //You should also check filesize here.
-        if ($uploadFile['size'] > 100000000) {
+        if ($uploadFile['size'] > 10000000) {
             throw new \RuntimeException('Exceeded filesize limit.');
         }
 
