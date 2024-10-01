@@ -43,17 +43,38 @@ function showObjects() {
         let descriptionButton = document.createElement('button');
         descriptionButton.innerText = "Details";
         descriptionButton.classList.add('detailsButton');
+        descriptionButton.classList.add('button');
         descriptionButton.dataset.objectId = Object.id; // Assign object ID
+
+        let zoomIcon = document.createElement('img');
+        zoomIcon.src = BASE_PATH + 'includes/images/zoom-icon.svg';
+        zoomIcon.classList.add('white');
+
+        descriptionButton.appendChild(zoomIcon);
 
         let userNameButton = document.createElement('button');
         userNameButton.innerText = "Edit";
         userNameButton.classList.add('editButton');
+        userNameButton.classList.add('button');
         userNameButton.dataset.objectId = Object.id; // Assign object ID
+
+        let pencilIcon = document.createElement('img');
+        pencilIcon.src = '' + BASE_PATH + 'includes/images/pencil-icon.svg';
+        pencilIcon.classList.add('white');
+
+        userNameButton.appendChild(pencilIcon);
 
         let deleteButton = document.createElement('button');
         deleteButton.innerText = "Delete";
         deleteButton.classList.add('deleteButton');
+        deleteButton.classList.add('button');
         deleteButton.dataset.objectId = Object.id; // Assign object ID
+
+        let trashIcon = document.createElement('img');
+        trashIcon.src = BASE_PATH + 'includes/images/trashcan-icon.svg';
+        trashIcon.classList.add('melon');
+
+        deleteButton.appendChild(trashIcon);
 
         //If the user has the object's id in their localstorage, add styling to indicate this
         if (localStorage.getItem(Object.id)) {

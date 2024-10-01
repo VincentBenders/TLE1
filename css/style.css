@@ -70,23 +70,6 @@ label {
     font-size: 1.2rem;
 }
 
-a,
-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5vw;
-
-    border: none;
-    font-family: inherit;
-    font-size: 1.2rem;
-    flex: 1 1;
-
-    img {
-        width: 1.6vw;
-    }
-}
-
 input,
 label:has(input[type=file]) {
     background-color: var(--darkGrey);
@@ -269,15 +252,32 @@ main {
 .listObject {
     display: flex;
     flex-direction: row;
-    padding: 0.5vw;
-    border: 2px solid var(--lightGreen);
+    padding: 0.5vw 1vw;
+    background-color: var(--convexGradiant);
     border-radius: var(--borderRadius);
+    box-shadow:  var(--extrudeShadow);
     justify-content: space-between;
+    align-items: center;
     gap: 0.2vw;
 
-    img {
+    >img {
         filter: var(--greyFilter);
     }
+
+    .button {
+        margin: 0;
+        padding: 0.3vw;
+        font-size: 1rem;
+
+        box-shadow: 0.2vw 0.2vw 0.2vw #111111, -0.2vw -0.2vw 0.2vw #373737;
+
+        img {
+            width: 1em;
+            translate: 0 -0.1em;
+        }
+
+    }
+
 }
 
 article.favorite {
@@ -289,15 +289,28 @@ img.favorite {
 }
 
 .button {
-    background-color: var(--convexGradiant);
-    color: white;
-    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
     padding: 0.5vw 1.5vw;
+    margin: 1vw 0;
     width: fit-content;
+
     border: none;
     border-radius: var(--borderRadius);
     box-shadow:  var(--extrudeShadow);
-    margin: 1vw 0;
+    font-family: inherit;
+    font-size: 1.2rem;
+
+    background-color: var(--convexGradiant);
+    color: white;
+    text-decoration: none;
+
+    img {
+        width: 1.6vw;
+        align-self: flex-end;
+    }
+
 }
 
 .button:hover {
