@@ -14,7 +14,7 @@ function init() {
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
     scrollWheel = document.getElementById('scrollWheel')
-    scrollWheel.addEventListener('scroll', scrollWheelHandler)
+    objectContainer.addEventListener('scroll', objectContainerScrollHandler);
     //Turn all the objects into articles and add them to the document
     showObjects();
 
@@ -114,28 +114,35 @@ function objectClickHandler(e) {
 }
 
 //thanks mdn webdocs
-function startScrolling() {
-    scrollWheel.style.backgroundColor = 'var--lightgreen';
-}
-function stopScrolling() {
-    // After scrolling stops, revert background to blue
-    scrollWheel.style.backgroundColor = 'var--green';
-}
-function scrollWheelHandler(e) {
-    lastKnownScrollPosition = window.scrollY;
+function objectContainerScrollHandler() {
+    const scrollTop = objectContainer.scrollTop;
+    const containerHeight = objectContainer.scrollHeight - objectContainer.clientHeight;
 
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            startScrolling(lastKnownScrollPosition);
+            updateScrollWheel(scrollTop, containerHeight);
             ticking = false;
         });
         ticking = true;
     }
+
+    // Optional: revert after scroll stops
     if (scrollTimeout) {
         clearTimeout(scrollTimeout);
     }
-
     scrollTimeout = setTimeout(stopScrolling, 150);
+}
+
+function updateScrollWheel(scrollPos, containerHeight) {
+    const scrollPercentage = (scrollPos / containerHeight) * 100;
+
+    // Move the scrollWheel along the right edge of the container
+    scrollWheel.style.top = `${scrollPercentage}%`; // Vertical movement
+    scrollWheel.style.backgroundColor = 'blue'; // Feedback during scrolling
+}
+
+function stopScrolling() {
+    scrollWheel.style.backgroundColor = 'var(--green)'; // Reset when scrolling stops
 }
 
 //Go to the details page

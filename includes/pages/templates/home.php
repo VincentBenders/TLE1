@@ -33,12 +33,7 @@
         <div id="objectDisplayTop">
 
             <div id="objectContainer" class="indent">
-
-
-
-            </div>
-
-            <div id="scrollWheel">
+                <div id="scrollWheel"></div>
 
             </div>
 
