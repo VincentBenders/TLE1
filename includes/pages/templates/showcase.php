@@ -27,11 +27,9 @@
         <div id="objectDisplayTop">
 
             <div id="objectContainer" class="indent">
+                <div id="scrollWheel">
 
-            </div>
-
-            <div id="scrollWheel">
-
+                </div>
             </div>
 
         </div>

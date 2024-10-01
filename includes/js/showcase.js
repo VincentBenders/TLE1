@@ -3,13 +3,17 @@ window.addEventListener('load', init);
 
 //Global variables
 let objectContainer;
+let scrollWheel
+let ticking = false;
+let scrollTimeout;
 
 //The function to run when the page has loaded
 function init() {
 
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
-
+    scrollWheel = document.getElementById('scrollWheel')
+    objectContainer.addEventListener('scroll', objectContainerScrollHandler);
     //Turn all the public objects into articles and add them to the document
     showPublicObjects();
 
@@ -83,6 +87,37 @@ function objectClickHandler(e) {
         case 'favorite': toggleFavorite(id); break;
     }
 
+}
+
+function objectContainerScrollHandler() {
+    const scrollTop = objectContainer.scrollTop;
+    const containerHeight = objectContainer.scrollHeight - objectContainer.clientHeight;
+
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateScrollWheel(scrollTop, containerHeight);
+            ticking = false;
+        });
+        ticking = true;
+    }
+
+    // Optional: revert after scroll stops
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(stopScrolling, 150);
+}
+
+function updateScrollWheel(scrollPos, containerHeight) {
+    const scrollPercentage = (scrollPos / containerHeight) * 100;
+
+    // Move the scrollWheel along the right edge of the container
+    scrollWheel.style.top = `${scrollPercentage}%`; // Vertical movement
+    scrollWheel.style.backgroundColor = 'darkgreen'; // Feedback during scrolling
+}
+
+function stopScrolling() {
+    scrollWheel.style.backgroundColor = 'var(--green)'; // Reset when scrolling stops
 }
 
 //Go to the details page

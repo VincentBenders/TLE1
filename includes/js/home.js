@@ -4,7 +4,6 @@ window.addEventListener('load', init);
 //Global variables
 let objectContainer;
 let scrollWheel
-let lastKnownScrollPosition = 0;
 let ticking = false;
 let scrollTimeout;
 
