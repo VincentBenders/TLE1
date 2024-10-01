@@ -138,7 +138,7 @@ function updateScrollWheel(scrollPos, containerHeight) {
 
     // Move the scrollWheel along the right edge of the container
     scrollWheel.style.top = `${scrollPercentage}%`; // Vertical movement
-    scrollWheel.style.backgroundColor = 'blue'; // Feedback during scrolling
+    scrollWheel.style.backgroundColor = 'darkgreen'; // Feedback during scrolling
 }
 
 function stopScrolling() {
