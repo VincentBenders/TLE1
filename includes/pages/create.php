@@ -61,18 +61,26 @@ if (isset($_POST['submit'])) {
 
 
         //Perform the query on the database
-        $statement->execute();
+        if ($statement->execute()) {
+            //Clear the post array
+            $_POST = [];
+
+            //Disconnect from the database
+            \classes\Database::disconnect();
+
+            //Return the user to the same page with a success message
+            header('location: create');
+            $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
+
+            exit;
+        } else {
+
+
 
         //Disconnect from the database
         \classes\Database::disconnect();
+        }
 
-        //Clear the post array
-        $_POST = [];
-
-        //Return the user to the same page with a success message
-        header('location: create');
-        $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
-        exit;
 
     }
 

@@ -7,7 +7,14 @@
     <form action="" method="post" enctype="multipart/form-data" class="extrude" id="createForm">
 
         <div>
-            <label for="name">Name</label>
+            <label for="name">Name
+                <?php if (!empty($validationErrors['name'])) { ?>
+                    <span class="error">
+                        <img src="<?= BASE_PATH ?>includes/images/warning-icon.svg" alt="" class="melon">
+                        <?= $validationErrors['name'] ?>
+                    </span>
+                <?php } ?>
+            </label>
             <input id="name" type="text" name="name" value="<?= htmlentities(($_POST['name']) ?? '') ?? '' ?>">
         </div>
 
