@@ -23,7 +23,7 @@
                     </span>
                 <?php } ?>
             </label>
-            <input id="name" type="text" name="name" value="<?= htmlentities(($_POST['name']) ?? '') ?? '' ?>">
+            <input id="name" type="text" name="name" value="<?= htmlentities(($_POST['name']) ?? '') ?? '' ?>" maxlength="255">
         </div>
 
         <div>

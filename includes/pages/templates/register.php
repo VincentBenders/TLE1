@@ -25,7 +25,7 @@
                 <?php } ?>
             </label>
             <input type="text" placeholder="Name..." name="name" id="name"
-                   value="<?= htmlentities($_POST['name'] ?? '') ?>">
+                   value="<?= htmlentities($_POST['name'] ?? '') ?>" maxlength="255">
         </div>
 
         <!-- E-mail -->
@@ -39,7 +39,7 @@
                 <?php } ?>
             </label>
             <input type="text" placeholder="Email..." name="email" id="email"
-                   value="<?= htmlentities($_POST['email'] ?? '') ?>">
+                   value="<?= htmlentities($_POST['email'] ?? '') ?>" maxlength="255">
         </div>
 
         <!-- Wachtwoord -->
@@ -55,7 +55,7 @@
                     <?php } ?>
                 </label>
                 <input type="password" placeholder="Password..." name="password" id="password"
-                       value="<?= htmlentities($_POST['password'] ?? '') ?>">
+                       value="<?= htmlentities($_POST['password'] ?? '') ?>" maxlength="255">
             </div>
 
             <!-- Wachtwoord controle -->
@@ -69,7 +69,7 @@
                     <?php } ?>
                 </label>
                 <input type="password" placeholder="Password..." name="passwordConfirm" id="passwordConfirm"
-                       value="<?= htmlentities($_POST['passwordConfirm'] ?? '') ?>">
+                       value="<?= htmlentities($_POST['passwordConfirm'] ?? '') ?>" maxlength="255">
             </div>
 
         </div>
