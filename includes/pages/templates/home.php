@@ -9,7 +9,7 @@
     <section id="homeTop">
 
         <h1>Your items</h1>
-l
+
         <button class="button">
             Filter
             <img src="<?= BASE_PATH ?>includes/images/filter-icon.svg" alt="" class="white">

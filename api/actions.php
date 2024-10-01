@@ -25,7 +25,7 @@ function getAllPublicItems($db)
 {
     $statement = $db->prepare("SELECT * FROM objects WHERE share = :share");
 
-    $statement->bindValue(':share', 0);
+    $statement->bindValue(':share', 1);
 
     $statement->execute();
 
