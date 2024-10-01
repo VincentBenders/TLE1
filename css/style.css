@@ -208,12 +208,14 @@ main {
 #objectContainer {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    overflow-y: auto;
     width: 90%;
     height: 50vh;
     gap: 1vw;
     padding: 1vw;
+    padding-right: 20px;
     margin: 1vw;
+    position: relative;
 }
 
 #searchBarContainer {
@@ -317,14 +319,14 @@ img.favorite {
 }
 
 #scrollWheel {
-    display: flex;
-    align-content: center;
-    margin: 1rem;
-    margin-left: 1px;
-    width: 3%;
+    position: absolute;   /* It will move within the parent container */
+    top: 0;               /* Start at the top */
+    right: 0;             /* Stick to the right edge */
+    width: 5px;           /* Adjust the width of the scroll bar */
+    height: 10%;          /* Adjust height to indicate scroll bar size */
     background-color: var(--green);
     border-radius: 25px;
-    transition: background-color 0.3s ease; /* Smooth transition */
+    transition: background-color 0.3s ease, top 0.3s ease; /* Smooth transition */
 }
 
 .cross {
