@@ -12,26 +12,26 @@ if (isset($_SESSION['userId'])) {
     exit; // Prevent further code execution
 }
 
-$errors = [];
+$validationErrors = [];
 
 // Check if form has been submitted
 if (isset($_POST['submit'])) {
     // Validate email
     if (!empty($_POST['email'])) {
-        if (strpos($_POST['email'], '@') === false) {
-            $errors['email'] = 'Email moet een @ bevatten.';
+        if (!str_contains($_POST['email'], '@')) {
+            $validationErrors['email'] = 'Email moet een @ bevatten.';
         }
     } else {
-        $errors['email'] = 'Email mag niet leeg zijn.';
+        $validationErrors['email'] = 'Email mag niet leeg zijn.';
     }
 
     // Validate password
     if (empty($_POST['password'])) {
-        $errors['password'] = 'Wachtwoord mag niet leeg zijn.';
+        $validationErrors['password'] = 'Wachtwoord mag niet leeg zijn.';
     }
 
     // Check if there are no validation errors
-    if (empty($errors)) {
+    if (empty($validationErrors)) {
         // Connect to the database
         $db = Database::connect();
 
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         $user = User::selectByEmail($db, $_POST['email']);
         if (!$user) {
             // Add error if email not found
-            $errors[] = 'Gebruiker niet gevonden, probeer het opnieuw.';
+            $validationErrors['email'] = 'Gebruiker niet gevonden, probeer het opnieuw.';
         } else {
             // Verify password
             if (password_verify($_POST['password'], $user['password'])) {
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
                 exit; // Prevent further code execution
             } else {
                 // Add error if password is incorrect
-                $errors[] = 'Onjuiste inloggegevens, probeer het opnieuw.';
+                $validationErrors['email'] = 'Onjuiste inloggegevens, probeer het opnieuw.';
             }
         }
 

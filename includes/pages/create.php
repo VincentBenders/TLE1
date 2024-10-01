@@ -18,15 +18,15 @@ if (isset($_POST['submit'])) {
 
     //Validate the input
     if (empty($_POST['name'])) {
-        $validationErrors[] = 'Name cannot be empty!';
+        $validationErrors['name'] = 'Name cannot be empty!';
     }
     if (empty($_POST['description'])) {
-        $validationErrors[] = 'Description cannot be empty!';
+        $validationErrors['description'] = 'Description cannot be empty!';
     }
     if (empty($_FILES['object']['type'])) {
-        $validationErrors[] = 'You must upload an object file';
+        $validationErrors['object'] = 'You must upload an object file';
     } elseif (pathinfo($_FILES['object']['full_path'])['extension'] !== 'glb') {
-        $validationErrors[] = 'The file must be a .glb file';
+        $validationErrors['object'] = 'The file must be a .glb file';
     }
 
     //If the form has been correctly filled in
@@ -61,18 +61,26 @@ if (isset($_POST['submit'])) {
 
 
         //Perform the query on the database
-        $statement->execute();
+        if ($statement->execute()) {
+            //Clear the post array
+            $_POST = [];
+
+            //Disconnect from the database
+            \classes\Database::disconnect();
+
+            //Return the user to the same page with a success message
+            header('location: create');
+            $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
+
+            exit;
+        } else {
+
+            $validationErrors['name'] = 'Something went wrong with sending the item to the database, please try again';
 
         //Disconnect from the database
         \classes\Database::disconnect();
+        }
 
-        //Clear the post array
-        $_POST = [];
-
-        //Return the user to the same page with a success message
-        header('location: create');
-        $_SESSION['success'] = 'Successfully created object with the name ' . htmlentities($newObject['name']);
-        exit;
 
     }
 
