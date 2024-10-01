@@ -39,7 +39,7 @@ $errorFile = '';
             $validationErrors[] = 'Description cannot be empty!';
         }
         if (empty($_POST['file_path'])) {
-            $validationErrors[] = 'Filepath cannot be empty!';
+            $validationErrors[] = '3d Image link is empty!';
         }
 
         //If the form has been correctly filled in
