@@ -219,6 +219,24 @@ main {
     position: relative;
 }
 
+.detailsButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
+}
+
+.editButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
+}
+
+.deleteButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
+}
+
 #searchBarContainer {
     padding: 0 1vw;
     margin-bottom: 1vw;
