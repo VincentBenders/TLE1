@@ -96,6 +96,7 @@ label:has(input[type=file]) {
     color: white;
     padding: 0.5vw;
     font-family: inherit;
+    font-size: 1rem;
 }
 
 input:focus {
