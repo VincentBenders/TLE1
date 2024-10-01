@@ -370,3 +370,25 @@ img.white {
     border: 2px solid white;
     border-radius: 100%;
 }
+
+
+.error {
+    color: var(--melon);
+    font-size: 1rem;
+
+    img {
+        width: 1em;
+        translate: 0 0.1em;
+    }
+
+}
+
+#success {
+    color: var(--green);
+    font-size: 1.6rem;
+
+    img {
+        width: 1em;
+        translate: 0 0.1em;
+    }
+}
