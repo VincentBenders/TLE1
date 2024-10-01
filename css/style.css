@@ -200,6 +200,11 @@ main {
     margin: 1vw 0;
 }
 
+#objectDisplayTop {
+    display: flex;
+    flex-direction: row;
+}
+
 #objectContainer {
     display: flex;
     flex-direction: column;
@@ -309,6 +314,17 @@ img.favorite {
 .button:active {
     background-color: var(--darkGrey);
     box-shadow: var(--indentShadow);
+}
+
+#scrollWheel {
+    display: flex;
+    align-content: center;
+    margin: 1rem;
+    margin-left: 1px;
+    width: 3%;
+    background-color: var(--green);
+    border-radius: 25px;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 .cross {

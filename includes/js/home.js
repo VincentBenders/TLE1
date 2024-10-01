@@ -3,13 +3,18 @@ window.addEventListener('load', init);
 
 //Global variables
 let objectContainer;
+let scrollWheel
+let lastKnownScrollPosition = 0;
+let ticking = false;
+let scrollTimeout;
 
 //The function to run when the page has loaded
 function init() {
 
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
-
+    scrollWheel = document.getElementById('scrollWheel')
+    scrollWheel.addEventListener('scroll', scrollWheelHandler)
     //Turn all the objects into articles and add them to the document
     showObjects();
 
@@ -106,6 +111,31 @@ function objectClickHandler(e) {
         case 'delete': redirectToDelete(id); break;
     }
 
+}
+
+//thanks mdn webdocs
+function startScrolling() {
+    scrollWheel.style.backgroundColor = 'var--lightgreen';
+}
+function stopScrolling() {
+    // After scrolling stops, revert background to blue
+    scrollWheel.style.backgroundColor = 'var--green';
+}
+function scrollWheelHandler(e) {
+    lastKnownScrollPosition = window.scrollY;
+
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            startScrolling(lastKnownScrollPosition);
+            ticking = false;
+        });
+        ticking = true;
+    }
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+
+    scrollTimeout = setTimeout(stopScrolling, 150);
 }
 
 //Go to the details page
