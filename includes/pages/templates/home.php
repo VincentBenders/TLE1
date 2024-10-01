@@ -9,7 +9,7 @@
     <section id="homeTop">
 
         <h1>Your items</h1>
-l
+
         <button class="button">
             Filter
             <img src="<?= BASE_PATH ?>includes/images/filter-icon.svg" alt="" class="white">
@@ -68,7 +68,7 @@ l
             <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
         </a>
 
-        <a href="<?= BASE_PATH ?>Logout" class="button">
+        <a href="<?= BASE_PATH ?>logout" class="button">
             Logout
             <img src="<?= BASE_PATH ?>includes/images/plus-icon.svg" alt="" class="purple cross">
         </a>
