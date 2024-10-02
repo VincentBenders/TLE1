@@ -15,6 +15,14 @@ if (str_ends_with($_SESSION['name'], 's')) {
     $titleSuffix = "'s profiel";
 }
 
+if (empty($_SESSION['image'])) {
+    $profilePicturePath = BASE_PATH . 'includes/images/default-profile-picture.svg';
+    $class = 'white';
+} else {
+    $profilePicturePath = BASE_PATH . 'includes/uploaded/images/' . $_SESSION['image'];
+    $class = 'profilePicture';
+}
+
 $title = $_SESSION['name'] . $titleSuffix;
 
 $db = \classes\Database::connect();
