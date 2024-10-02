@@ -1,23 +1,24 @@
 window.addEventListener('load', init)
 
 //globals
-let section;
-let dataset;
+let sectionTop;
+let previewLink;
 
 function init() {
 
-    fetchObjects();
+    sectionTop = document.getElementById('detailsTop');
+    previewLink = document.getElementById('preview');
+
+    let id = window.location.href.split('?id=')[1];
+
+    fetchDetails(id);
 
 }
 
 function loadObjects(data) {
     // Display the object details in the details page
 
-    console.log(data);
-
-    section = document.querySelector("section");
-
-    for(let object of data) {
+    for (let object of data) {
 
         let div = document.createElement("div");
         let h2 = document.createElement("h2");
@@ -48,31 +49,42 @@ function loadObjects(data) {
     }
 
 
-
 }
 
 function loadObjectDetails(data) {
-    console.log(data);
 
     // Create a new div element to display the object details
-    let div = document.createElement("div");
-    let h2 = document.createElement("h2");
+
+    let name = document.createElement("h1");
     let description = document.createElement("p");
-    let image = document.createElement("img");
-    let p = document.createElement("p");
+    let credits = document.createElement("p");
+    let shareLevel = document.createElement('div');
+    let shareText = document.createElement('h3');
+    let shareDescription = document.createElement('p');
 
-    h2.innerHTML = data.name;
+    name.innerHTML = data.name;
     description.innerHTML = data.description;
-    image.src = data.file_path;
-    p.innerHTML = `made by user: ${data.user_id}`;
+    credits.innerHTML = `made by user: ${data.user_id}`;
+    shareLevel.id = 'shareLevel';
+    shareText.innerText = 'Share level';
 
-    div.appendChild(h2);
-    div.appendChild(description)
-    div.appendChild(image);
-    div.appendChild(p);
+    if (data.share === 1) {
+        shareDescription.innerText = 'Public';
+    } else {
+        shareDescription.innerText = 'Private';
+    }
 
     // Append the div element to the section element
-    section.appendChild(div);
+    shareLevel.appendChild(shareText);
+    shareLevel.appendChild(shareDescription);
+
+    sectionTop.appendChild(name);
+    sectionTop.appendChild(description);
+    sectionTop.appendChild(credits);
+    sectionTop.appendChild(shareLevel);
+
+    previewLink.href += data.id.toString();
+
 }
 
 function fetchObjects() {

@@ -361,6 +361,26 @@ img.favorite {
     transition: background-color 0.3s ease, top 0.3s ease;
 }
 
+#detailsMain {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+#detailsTop {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding: 1vw;
+}
+
+#detailsBottom {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    justify-content: space-between;
+}
+
 .cross {
   transform: rotate(45deg);
 }
