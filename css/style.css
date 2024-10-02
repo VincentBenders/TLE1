@@ -1,388 +1,396 @@
 * {
-    /*Making sure we don't have any surprises later*/
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  /*Making sure we don't have any surprises later*/
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    /*Hex colors*/
-    --green: #88D18A;
-    --lightGreen: #CCDDB7;
-    --grey: #6A5B6E;
-    --melon: #F0B7B3;
-    --ourple: #A833B9;
-    --darkGrey: #242424;
+  /*Hex colors*/
+  --green: #88d18a;
+  --lightGreen: #ccddb7;
+  --grey: #6a5b6e;
+  --melon: #f0b7b3;
+  --ourple: #a833b9;
+  --darkGrey: #242424;
 
-    /*Filters for black SVGs*/
-    --greenFilter: invert(91%) sepia(4%) saturate(4059%) hue-rotate(61deg) brightness(90%) contrast(80%);
-    --lightGreenFilter: invert(95%) sepia(8%) saturate(754%) hue-rotate(35deg) brightness(91%) contrast(94%);
-    --greyFilter: invert(39%) sepia(15%) saturate(501%) hue-rotate(242deg) brightness(89%) contrast(87%);
-    --melonFilter: invert(78%) sepia(23%) saturate(405%) hue-rotate(315deg) brightness(95%) contrast(97%);
-    --ourpleFilter: invert(24%) sepia(93%) saturate(1889%) hue-rotate(275deg) brightness(91%) contrast(91%);
-    
-    /*Other variables*/
-    --borderRadius: 0.6vw;
-    --positiveShadow: 0.5vw 0.5vw 0.5vw #111111;
-    --negativeShadow: -0.5vw -0.5vw 0.5vw #373737;
-    --indentShadow: inset var(--positiveShadow), inset var(--negativeShadow);
-    --extrudeShadow: var(--positiveShadow), var(--negativeShadow);
-    --convexGradiant: linear-gradient(145deg, #272727, #202020);
+  /*Filters for black SVGs*/
+  --greenFilter: invert(91%) sepia(4%) saturate(4059%) hue-rotate(61deg)
+    brightness(90%) contrast(80%);
+  --lightGreenFilter: invert(95%) sepia(8%) saturate(754%) hue-rotate(35deg)
+    brightness(91%) contrast(94%);
+  --greyFilter: invert(39%) sepia(15%) saturate(501%) hue-rotate(242deg)
+    brightness(89%) contrast(87%);
+  --melonFilter: invert(78%) sepia(23%) saturate(405%) hue-rotate(315deg)
+    brightness(95%) contrast(97%);
+  --ourpleFilter: invert(24%) sepia(93%) saturate(1889%) hue-rotate(275deg)
+    brightness(91%) contrast(91%);
 
-    /*Global settings*/
-    font-size: 1vw;
+  /*Other variables*/
+  --borderRadius: 0.6vw;
+  --positiveShadow: 0.5vw 0.5vw 0.5vw #111111;
+  --negativeShadow: -0.5vw -0.5vw 0.5vw #373737;
+  --indentShadow: inset var(--positiveShadow), inset var(--negativeShadow);
+  --extrudeShadow: var(--positiveShadow), var(--negativeShadow);
+  --convexGradiant: linear-gradient(145deg, #272727, #202020);
+
+  /*Global settings*/
+  font-size: 1vw;
 }
 
 @font-face {
-    font-family: 'Kode Mono';
-    src: url("fonts/KodeMono-VariableFont_wght.ttf");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Kode Mono";
+  src: url("fonts/KodeMono-VariableFont_wght.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    font-family: 'Kode Mono', sans-serif;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--darkGrey);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+  font-family: "Kode Mono", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--darkGrey);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 h1 {
-    font-size: 2.4rem;
+  font-size: 2.4rem;
 }
 
 h2 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 h3 {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
 p,
 label {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 input,
-label:has(input[type=file]) {
-    background-color: var(--darkGrey);
-    border: 2px solid var(--grey);
-    border-radius: var(--borderRadius);
-    box-shadow: var(--indentShadow);
-    color: white;
-    padding: 0.5vw;
-    font-family: inherit;
-    font-size: 1rem;
+label:has(input[type="file"]) {
+  background-color: var(--darkGrey);
+  border: 2px solid var(--grey);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--indentShadow);
+  color: white;
+  padding: 0.5vw;
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 input:focus {
-    outline: none;
-    border: 2px solid var(--green);
+  outline: none;
+  border: 2px solid var(--green);
 }
 
 input:active {
-    border: 2px solid var(--green);
+  border: 2px solid var(--green);
 }
 
-label:has(input[type=file]) {
-    display: flex;
-    align-items: center;
-    flex: 1 1;
-    gap: 0.5vw;
-    cursor: pointer;
-    color: #989898;
-    font-size: 0.9rem;
+label:has(input[type="file"]) {
+  display: flex;
+  align-items: center;
+  flex: 1 1;
+  gap: 0.5vw;
+  cursor: pointer;
+  color: #989898;
+  font-size: 0.9rem;
 
-    >img {
-        width: 1vw;
-    }
+  > img {
+    width: 1vw;
+  }
 
-    >span {
-        color: var(--green);
-    }
-
-}
-
-input[type=file] {
-    filter: opacity(0%);
-    padding: 0;
-    width: 0;
-    height: 0;
-    border: none;
-}
-
-button[type=submit] {
-    align-self: center;
-}
-
-button[type=submit]:active {
+  > span {
     color: var(--green);
+  }
+}
+
+input[type="file"] {
+  filter: opacity(0%);
+  padding: 0;
+  width: 0;
+  height: 0;
+  border: none;
+}
+
+button[type="submit"] {
+  align-self: center;
+}
+
+button[type="submit"]:active {
+  color: var(--green);
 }
 
 main {
-    padding: 2vw;
-    margin: auto;
-    width: 60vw;
+  padding: 2vw;
+  margin: auto;
+  width: 60vw;
 }
 
 #loginMain,
 #registerMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2vw;
+
+  form {
+    padding: 1vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 2vw;
+    gap: 1vw;
 
-    form {
-        padding: 1vw;
-        display: flex;
-        flex-direction: column;
-        gap: 1vw;
-
-        div:has(>label) {
-            display: flex;
-            flex-direction: column;
-            gap: 0.1vw;
-        }
+    div:has(> label) {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1vw;
     }
-
+  }
 }
 
 #passwordRepeat {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1vw;
 
-    div {
-        width: 50%;
-    }
+  div {
+    width: 50%;
+  }
 }
 
 #homeMain {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #homeTop {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1vw;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1vw;
+  align-items: center;
 }
 
 #objectDisplay {
-    border-radius: var(--borderRadius);
-    width: 100%;
-    margin: 1vw 0;
+  border-radius: var(--borderRadius);
+  width: 100%;
+  margin: 1vw 0;
 }
 
 #objectDisplayTop {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #objectContainer {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    width: 90%;
-    height: 50vh;
-    gap: 1vw;
-    padding: 1vw;
-    padding-right: 20px;margin: 1vw;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: 90%;
+  height: 50vh;
+  gap: 1vw;
+  padding: 1vw;
+  padding-right: 20px;
+  margin: 1vw;
+  position: relative;
 }
 
 .detailsButton {
-    border-radius: 10px;
-    align-content: center;
-    margin: 2px;
+  border-radius: 10px;
+  align-content: center;
+  margin: 2px;
 }
 
 .editButton {
-    border-radius: 10px;
-    align-content: center;
-    margin: 2px;
+  border-radius: 10px;
+  align-content: center;
+  margin: 2px;
 }
 
 .deleteButton {
-    border-radius: 10px;
-    align-content: center;
-    margin: 2px;
+  border-radius: 10px;
+  align-content: center;
+  margin: 2px;
 }
 
 #searchBarContainer {
-    padding: 0 1vw;
-    margin-bottom: 1vw;
-    width: 90%;
+  padding: 0 1vw;
+  margin-bottom: 1vw;
+  width: 90%;
 
-    form {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1vw;
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
 
-        input {
-            width: 75%;
-        }
+    input {
+      width: 75%;
     }
+  }
 }
 
 #homeBottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vw;
 }
 
 #createMain {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 }
 
 #createForm {
+  display: flex;
+  flex-direction: column;
+  padding: 1vw;
+  gap: 1vw;
+
+  > div {
     display: flex;
     flex-direction: column;
-    padding: 1vw;
-    gap: 1vw;
-
-    >div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5vw;
-    }
-
+    gap: 0.5vw;
+  }
 }
 
 .listObject {
-    display: flex;
-    flex-direction: row;
-    padding: 0.5vw 1vw;
-    background-color: var(--convexGradiant);
-    border-radius: var(--borderRadius);
-    box-shadow:  var(--extrudeShadow);
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.2vw;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5vw 1vw;
+  background-color: var(--convexGradiant);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--extrudeShadow);
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2vw;
 
-    >img {
-        filter: var(--greyFilter);
+  > img {
+    filter: var(--greyFilter);
+  }
+
+  .button {
+    margin: 0;
+    padding: 0.3vw;
+    font-size: 1rem;
+
+    box-shadow: 0.2vw 0.2vw 0.2vw #111111, -0.2vw -0.2vw 0.2vw #373737;
+
+    img {
+      width: 1em;
+      translate: 0 -0.1em;
     }
-
-    .button {
-        margin: 0;
-        padding: 0.3vw;
-        font-size: 1rem;
-
-        box-shadow: 0.2vw 0.2vw 0.2vw #111111, -0.2vw -0.2vw 0.2vw #373737;
-
-        img {
-            width: 1em;
-            translate: 0 -0.1em;
-        }
-
-    }
-
+  }
 }
 
 .listObject h3 {
-    max-width: 27%;
-    overflow: hidden;
+  max-width: 27%;
+  overflow: hidden;
 }
 
 article.favorite {
-    border-color: var(--melon);
+  border-color: var(--melon);
 }
 
 img.favorite {
-    filter: var(--melonFilter);
+  filter: var(--melonFilter);
 }
 
 .button {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5vw;
-    padding: 0.5vw 1.5vw;
-    margin: 1vw 0;
-    width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vw;
+  padding: 0.5vw 1.5vw;
+  margin: 1vw 0;
+  width: fit-content;
 
-    border: none;
-    border-radius: var(--borderRadius);
-    box-shadow:  var(--extrudeShadow);
-    font-family: inherit;
-    font-size: 1.2rem;
+  border: none;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--extrudeShadow);
+  font-family: inherit;
+  font-size: 1.2rem;
 
-    background-color: var(--convexGradiant);
-    color: white;
-    text-decoration: none;
+  background-color: var(--convexGradiant);
+  color: white;
+  text-decoration: none;
 
-    img {
-        width: 1.6vw;
-        align-self: flex-end;
-    }
-
+  img {
+    width: 1.6vw;
+    align-self: flex-end;
+  }
 }
 
 .button:hover {
-    cursor: pointer;
-    color: var(--green);
+  cursor: pointer;
+  color: var(--green);
 
-    img:not(.profilePicture) {
-        filter: var(--greenFilter);
-    }
+  img:not(.profilePicture) {
+    filter: var(--greenFilter);
+  }
 
-    img.profilePicture {
-        border-color: var(--green);
-    }
-
+  img.profilePicture {
+    border-color: var(--green);
+  }
 }
 
 .button:active {
-    background-color: var(--darkGrey);
-    box-shadow: var(--indentShadow);
+  background-color: var(--darkGrey);
+  box-shadow: var(--indentShadow);
 }
 
 #scrollWheel {
-    position: absolute;   /* It will move within the parent container */
-    top: 0;
-    right: 0;
-    width: 5px;
-    height: 10%;
-    background-color: var(--green);
-    border-radius: 25px;
-    transition: background-color 0.3s ease, top 0.3s ease;
+  position: absolute; /* It will move within the parent container */
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 10%;
+  background-color: var(--green);
+  border-radius: 25px;
+  transition: background-color 0.3s ease, top 0.3s ease;
 }
 
 #detailsMain {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
 }
 
 #detailsTop {
-    display: flex;
-    flex-direction: column;
-    gap: 1vw;
-    padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  padding: 1vw;
 }
-
+#detailsTop h1 {
+  max-width: 95%;
+  text-indent: 0.5em;
+  overflow: hidden;
+}
+#detailsTop p {
+  max-width: 95%;
+  overflow: hidden;
+  /* let the letters go futher under the first line */
+  text-indent: 1em;
+}
 #detailsBottom {
-    display: flex;
-    flex-direction: row;
-    gap: 1vw;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  justify-content: space-between;
 }
 
 .cross {
@@ -390,78 +398,74 @@ img.favorite {
 }
 
 .extrude {
-    background-color: var(--convexGradiant);
-    border-radius: var(--borderRadius);
-    box-shadow:  var(--extrudeShadow);
+  background-color: var(--convexGradiant);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--extrudeShadow);
 }
 
 .indent {
-    border-radius: var(--borderRadius);
-    box-shadow: var(--indentShadow);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--indentShadow);
 }
 
 img.green {
-    filter: var(--greenFilter);
+  filter: var(--greenFilter);
 }
 
 img.lightGreen {
-    filter: var(--lightGreenFilter);
+  filter: var(--lightGreenFilter);
 }
 
 img.grey {
-    filter: var(--greyFilter);
+  filter: var(--greyFilter);
 }
 
 img.melon {
-    filter: var(--melonFilter);
+  filter: var(--melonFilter);
 }
 
 img.purple {
-    filter: var(--ourpleFilter);
+  filter: var(--ourpleFilter);
 }
 
 img.white {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 
 .profilePicture {
-    border: 2px solid white;
-    border-radius: 100%;
+  border: 2px solid white;
+  border-radius: 100%;
 }
 
-
-
 .error {
-    color: var(--melon);
-    font-size: 1rem;
+  color: var(--melon);
+  font-size: 1rem;
 
-    img {
-        width: 1em;
-        translate: 0 0.1em;
-    }
-
+  img {
+    width: 1em;
+    translate: 0 0.1em;
+  }
 }
 
 #success {
-    color: var(--green);
-    font-size: 1.6rem;
+  color: var(--green);
+  font-size: 1.6rem;
 
-    img {
-        width: 1em;
-        translate: 0 0.1em;
-    }
+  img {
+    width: 1em;
+    translate: 0 0.1em;
+  }
 }
 
-
 .main_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .profilePagePicture img {
-    width: 100px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
