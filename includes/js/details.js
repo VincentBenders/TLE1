@@ -83,7 +83,7 @@ function loadObjectDetails(data) {
     sectionTop.appendChild(credits);
     sectionTop.appendChild(shareLevel);
 
-    previewLink.href += data.id.toString();
+    previewLink.href += data.file_path.split('.')[0];
 
 }
 
