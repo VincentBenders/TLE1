@@ -14,6 +14,9 @@ $user = \classes\User::selectByEmail($db, $_SESSION['email']);
 
 // Verwerk het formulier als het is ingediend
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // TODO: Prevent the user from submitting an email that's already in use, unless it's their own
+
     $updatedUser = [
         'name' => trim($_POST['name']),
         'email' => trim($_POST['email']),
@@ -23,6 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Update de gebruiker in de database
     if (\classes\User::update($db, $_SESSION['userId'], $updatedUser)) {
         $_SESSION['success'] = 'Profiel succesvol bijgewerkt!';
+        $_SESSION['email'] = $updatedUser['email'];
+        $_SESSION['name'] = $updatedUser['name'];
+        $_SESSION['image'] = $updatedUser['profile_image_path'];
         header('location: profile'); // Redirect naar profielpagina na succesvol bijwerken
         exit;
     } else {
