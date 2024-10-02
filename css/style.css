@@ -297,6 +297,11 @@ main {
 
 }
 
+.listObject h3 {
+    max-width: 27%;
+    overflow: hidden;
+}
+
 article.favorite {
     border-color: var(--melon);
 }
