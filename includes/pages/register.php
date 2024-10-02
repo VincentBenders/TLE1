@@ -16,52 +16,52 @@ if (isset($_POST['submit'])) {
     $db = classes\Database::connect();
 
     // Server-side validatie
-    $errors = [];
+    $validationErrors = [];
 
     // Controleer of de volledige naam is ingevuld
     if (empty($_POST['name'])) {
-        $errors['name'] = 'Naam mag niet leeg zijn.';
+        $validationErrors['name'] = 'Naam mag niet leeg zijn.';
     }
 
     // Validatie voor e-mail
     if (!empty($_POST['email'])) {
         if (strpos($_POST['email'], '@') === false) {
-            $errors['email'] = 'Email moet een @ bevatten.';
+            $validationErrors['email'] = 'Email moet een @ bevatten.';
         }
     } else {
-        $errors['email'] = 'Email mag niet leeg zijn.';
+        $validationErrors['email'] = 'Email mag niet leeg zijn.';
     }
 
     // Validatie voor wachtwoord
     if (empty($_POST['password'])) {
-        $errors['password'] = 'Wachtwoord mag niet leeg zijn.';
+        $validationErrors['password'] = 'Wachtwoord mag niet leeg zijn.';
     }
 
     // Controleer of de e-mail al in gebruik is
     else if (classes\User::selectByEmail($db, $_POST['email'])) {
-        $errors['email'] = 'Email is al in gebruik.';
+        $validationErrors['email'] = 'Email is al in gebruik.';
     }
 
     // Validatie voor wachtwoord herhaling
     if (empty($_POST['passwordConfirm'])) {
-        $errors['passwordConfirm'] = 'Herhaal je wachtwoord';
+        $validationErrors['passwordConfirm'] = 'Herhaal je wachtwoord';
     } else if ($_POST['password'] !== $_POST['passwordConfirm']) {
-        $errors['passwordConfirm'] = 'Wachtwoord niet goed herhaald';
+        $validationErrors['passwordConfirm'] = 'Wachtwoord niet goed herhaald';
     }
 
     // Validatie voor profielfoto
     if (!empty($_FILES['image']['type'])) {
         if ($_FILES['image']['type'] != 'image/png' && $_FILES['image']['type'] != 'image/jpg' && $_FILES['image']['type'] != 'image/jpeg') {
-            $errors[] = 'Foto moet van het type PNG of JPG zijn';
+            $validationErrors['image'] = 'Foto moet van het type PNG of JPG zijn';
         }
 
         if ($_FILES['image']['size'] > 1000000) {
-            $errors[] = 'Foto bestand is te groot';
+            $validationErrors['image'] = 'Foto bestand is te groot';
         }
     }
 
     // Als er geen fouten zijn
-    if (empty($errors)) {
+    if (empty($validationErrors)) {
         $image = new \classes\Image();
 
         // Gebruikersgegevens opslaan in een array
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['success'] = 'Account is succesvol aangemaakt.';
             exit;
         } else {
-            $errors[] = 'Er is iets mis gegaan met het opslaan van de gegevens, probeer het nog een keer.';
+            $validationErrors['name'] = 'Er is iets mis gegaan met het opslaan van de gegevens, probeer het nog een keer.';
         }
     }
 

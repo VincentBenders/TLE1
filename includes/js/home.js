@@ -3,13 +3,17 @@ window.addEventListener('load', init);
 
 //Global variables
 let objectContainer;
+let scrollWheel
+let ticking = false;
+let scrollTimeout;
 
 //The function to run when the page has loaded
 function init() {
 
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
-
+    scrollWheel = document.getElementById('scrollWheel')
+    objectContainer.addEventListener('scroll', objectContainerScrollHandler);
     //Turn all the objects into articles and add them to the document
     showObjects();
 
@@ -38,17 +42,38 @@ function showObjects() {
         let descriptionButton = document.createElement('button');
         descriptionButton.innerText = "Details";
         descriptionButton.classList.add('detailsButton');
+        descriptionButton.classList.add('button');
         descriptionButton.dataset.objectId = Object.id; // Assign object ID
+
+        let zoomIcon = document.createElement('img');
+        zoomIcon.src = BASE_PATH + 'includes/images/zoom-icon.svg';
+        zoomIcon.classList.add('white');
+
+        descriptionButton.appendChild(zoomIcon);
 
         let userNameButton = document.createElement('button');
         userNameButton.innerText = "Edit";
         userNameButton.classList.add('editButton');
+        userNameButton.classList.add('button');
         userNameButton.dataset.objectId = Object.id; // Assign object ID
+
+        let pencilIcon = document.createElement('img');
+        pencilIcon.src = '' + BASE_PATH + 'includes/images/pencil-icon.svg';
+        pencilIcon.classList.add('white');
+
+        userNameButton.appendChild(pencilIcon);
 
         let deleteButton = document.createElement('button');
         deleteButton.innerText = "Delete";
         deleteButton.classList.add('deleteButton');
+        deleteButton.classList.add('button');
         deleteButton.dataset.objectId = Object.id; // Assign object ID
+
+        let trashIcon = document.createElement('img');
+        trashIcon.src = BASE_PATH + 'includes/images/trashcan-icon.svg';
+        trashIcon.classList.add('melon');
+
+        deleteButton.appendChild(trashIcon);
 
         //If the user has the object's id in their localstorage, add styling to indicate this
         if (localStorage.getItem(Object.id)) {
@@ -106,6 +131,38 @@ function objectClickHandler(e) {
         case 'delete': redirectToDelete(id); break;
     }
 
+}
+
+//thanks mdn webdocs
+function objectContainerScrollHandler() {
+    const scrollTop = objectContainer.scrollTop;
+    const containerHeight = objectContainer.scrollHeight - objectContainer.clientHeight;
+
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            updateScrollWheel(scrollTop, containerHeight);
+            ticking = false;
+        });
+        ticking = true;
+    }
+
+    // Optional: revert after scroll stops
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(stopScrolling, 150);
+}
+
+function updateScrollWheel(scrollPos, containerHeight) {
+    const scrollPercentage = (scrollPos / containerHeight) * 100;
+
+    // Move the scrollWheel along the right edge of the container
+    scrollWheel.style.top = `${scrollPercentage}%`; // Vertical movement
+    scrollWheel.style.backgroundColor = 'darkgreen'; // Feedback during scrolling
+}
+
+function stopScrolling() {
+    scrollWheel.style.backgroundColor = 'var(--green)'; // Reset when scrolling stops
 }
 
 //Go to the details page

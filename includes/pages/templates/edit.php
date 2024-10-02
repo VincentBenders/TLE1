@@ -76,8 +76,8 @@
             <input id="description" type="text" name="description" value="<?= htmlentities($objectData['description']) ?>">
         </div>
 
-        <div>
-            <label for="file_path">3d image link</label>
+        <div class=" editImageLink">
+            <label class="fileLabel" for="file_path">3d image link</label>
             <input id="file_path" type="file" name="file_path" value="<?= htmlentities($objectData['file_path']) ?>">
         </div>
 

@@ -70,23 +70,6 @@ label {
     font-size: 1.2rem;
 }
 
-a,
-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5vw;
-
-    border: none;
-    font-family: inherit;
-    font-size: 1.2rem;
-    flex: 1 1;
-
-    img {
-        width: 1.6vw;
-    }
-}
-
 input,
 label:has(input[type=file]) {
     background-color: var(--darkGrey);
@@ -96,6 +79,7 @@ label:has(input[type=file]) {
     color: white;
     padding: 0.5vw;
     font-family: inherit;
+    font-size: 1rem;
 }
 
 input:focus {
@@ -200,15 +184,40 @@ main {
     margin: 1vw 0;
 }
 
+#objectDisplayTop {
+    display: flex;
+    flex-direction: row;
+}
+
 #objectContainer {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    overflow-y: auto;
     width: 90%;
     height: 50vh;
     gap: 1vw;
     padding: 1vw;
+    padding-right: 20px;
     margin: 1vw;
+    position: relative;
+}
+
+.detailsButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
+}
+
+.editButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
+}
+
+.deleteButton {
+    border-radius: 10px;
+    align-content: center;
+    margin: 2px;
 }
 
 #searchBarContainer {
@@ -261,15 +270,32 @@ main {
 .listObject {
     display: flex;
     flex-direction: row;
-    padding: 0.5vw;
-    border: 2px solid var(--lightGreen);
+    padding: 0.5vw 1vw;
+    background-color: var(--convexGradiant);
     border-radius: var(--borderRadius);
+    box-shadow:  var(--extrudeShadow);
     justify-content: space-between;
+    align-items: center;
     gap: 0.2vw;
 
-    img {
+    >img {
         filter: var(--greyFilter);
     }
+
+    .button {
+        margin: 0;
+        padding: 0.3vw;
+        font-size: 1rem;
+
+        box-shadow: 0.2vw 0.2vw 0.2vw #111111, -0.2vw -0.2vw 0.2vw #373737;
+
+        img {
+            width: 1em;
+            translate: 0 -0.1em;
+        }
+
+    }
+
 }
 
 article.favorite {
@@ -281,15 +307,28 @@ img.favorite {
 }
 
 .button {
-    background-color: var(--convexGradiant);
-    color: white;
-    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
     padding: 0.5vw 1.5vw;
+    margin: 1vw 0;
     width: fit-content;
+
     border: none;
     border-radius: var(--borderRadius);
     box-shadow:  var(--extrudeShadow);
-    margin: 1vw 0;
+    font-family: inherit;
+    font-size: 1.2rem;
+
+    background-color: var(--convexGradiant);
+    color: white;
+    text-decoration: none;
+
+    img {
+        width: 1.6vw;
+        align-self: flex-end;
+    }
+
 }
 
 .button:hover {
@@ -309,6 +348,17 @@ img.favorite {
 .button:active {
     background-color: var(--darkGrey);
     box-shadow: var(--indentShadow);
+}
+
+#scrollWheel {
+    position: absolute;   /* It will move within the parent container */
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 10%;
+    background-color: var(--green);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, top 0.3s ease;
 }
 
 .cross {
@@ -353,4 +403,27 @@ img.white {
 .profilePicture {
     border: 2px solid white;
     border-radius: 100%;
+}
+
+
+
+.error {
+    color: var(--melon);
+    font-size: 1rem;
+
+    img {
+        width: 1em;
+        translate: 0 0.1em;
+    }
+
+}
+
+#success {
+    color: var(--green);
+    font-size: 1.6rem;
+
+    img {
+        width: 1em;
+        translate: 0 0.1em;
+    }
 }
