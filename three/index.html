@@ -10,8 +10,7 @@
   </head>
   <body>
 
-    <div id="3Dbody" class="item"></div>
-    <div class="info"></div>
+
     <!-- Import map to resolve module paths -->
     <script type="importmap">
       {
@@ -45,9 +44,8 @@ console.log(searchParams.get('item'));
 
       // Create a renderer
       const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(700, 700);
-      div.appendChild(renderer.domElement);
-      console.log(document.querySelector(".item"));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
 
       // Add lighting
