@@ -55,8 +55,12 @@
             <a class="updateProfileButton" href="<?= BASE_PATH ?>userUpdate?id=<?= $_SESSION['userId'] ?>">
                 Profiel bewerken
             </a>
-            <a class="profileBackButton" href="<?= BASE_PATH ?> home.php <?= $_SESSION['userId']?>"></a>
         </div>
     </div>
-    <br>
+
+    <a href="<?= BASE_PATH ?>home" class="button">
+        Go back
+        <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
+    </a>
+
 </div>

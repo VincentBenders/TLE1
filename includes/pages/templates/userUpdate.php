@@ -28,4 +28,10 @@
 
         <button type="submit" class="updateProfileButton">Profiel bijwerken</button>
     </form>
+
+    <a href="<?= BASE_PATH ?>profile" class="button">
+        Go back
+        <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
+    </a>
+
 </div>
