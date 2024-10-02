@@ -10,8 +10,7 @@
   </head>
   <body>
 
-    <div id="3Dbody" class="item"></div>
-    <div class="info"></div>
+
     <!-- Import map to resolve module paths -->
     <script type="importmap">
       {
@@ -26,23 +25,27 @@
       // Importing modules using the import map
       import * as THREE from 'three';
       import { GLTFLoader } from 'GLTFLoader';
-      
+
+const searchParams = new URLSearchParams(window.location.search);
+console.log(searchParams.get('item'));
 
       
-
+      let item = searchParams.get('item')
+      let itemurl = 'http://localhost/TLE1/includes/uploaded/objects//' + item + '.glb'
+      console.log(apiUrl, "yesyes")
       const div = document.querySelector(".item");
       // Set up the scene
       const scene = new THREE.Scene();
 
       // Create a camera (perspective)
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.rotation.set(0, 0.5, 0);
       camera.position.z = 5;
 
       // Create a renderer
       const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(500, 500);
-      div.appendChild(renderer.domElement);
-      console.log(document.querySelector(".item"));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
 
       // Add lighting
@@ -53,7 +56,7 @@
       // Load a 3D model (GLTF format)
       const loader = new GLTFLoader();
       loader.load(
-        'http://localhost/TLE1/includes/uploaded/objects//087e288a07c373516f2c19dc21b7e7877df5af73.glb',
+        itemurl,
         (gltf) => {
           const model = gltf.scene;
           model.scale.set(10, 10, 10);  // Change these values based on the model size
