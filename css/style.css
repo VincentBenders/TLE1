@@ -283,6 +283,10 @@ main {
     filter: var(--greyFilter);
   }
 
+  >h3 {
+    flex-grow: 6;
+  }
+
   .button {
     margin: 0;
     padding: 0.3vw;
