@@ -13,10 +13,10 @@
             <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="green">
         </a>
 
-        <a href="<?= BASE_PATH ?>home" class="button">
+        <button onclick="history.back()" class="button">
             Go back
             <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
-        </a>
+        </button>
 
     </section>
 
