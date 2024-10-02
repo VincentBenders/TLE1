@@ -8,7 +8,7 @@
 
     <section id="detailsBottom">
 
-        <a href="<?= BASE_PATH ?>preview?id=" id="preview" class="button">
+        <a href="<?= BASE_PATH ?>/three/index.html?item=" id="preview" class="button">
             Preview
             <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="green">
         </a>
