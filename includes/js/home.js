@@ -1,32 +1,42 @@
-//Wait for the page to fully load before doing things with javascript
+// Wait for the page to fully load before doing things with javascript
 window.addEventListener('load', init);
 
-//Global variables
+// Global variables
 let objectContainer;
-let scrollWheel
+let scrollWheel;
 let ticking = false;
 let scrollTimeout;
 
-//The function to run when the page has loaded
+// The function to run when the page has loaded
 function init() {
-
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
-    scrollWheel = document.getElementById('scrollWheel')
-    objectContainer.addEventListener('scroll', objectContainerScrollHandler);
-    //Turn all the objects into articles and add them to the document
-    showObjects();
+    scrollWheel = document.getElementById('scrollWheel');
 
+    // Add search functionality
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents the form from being submitted
+            filterObjects();
+        }
+    });
+
+    objectContainer.addEventListener('scroll', objectContainerScrollHandler);
+
+    // Turn all the objects into articles and add them to the document
+    showObjects();
 }
 
-//Functions
+// Functions
 
-//Creates DOM elements for each object and adds them to the main page
+// Creates DOM elements for each object and adds them to the main page
 function showObjects() {
+    // Clear existing objects
+    objectContainer.innerHTML = '';
 
     for (const Object of Objects) {
-
-        //Create all the elements and add relevant text
+        // Create all the elements and add relevant text
         let article = document.createElement('article');
         article.dataset.objectId = Object.id;
         article.classList.add('listObject');
@@ -75,33 +85,45 @@ function showObjects() {
 
         deleteButton.appendChild(trashIcon);
 
-        //If the user has the object's id in their localstorage, add styling to indicate this
+        // If the user has the object's id in their localstorage, add styling to indicate this
         if (localStorage.getItem(Object.id)) {
             image.classList.add('favorite');
             article.classList.add('favorite');
         }
 
-        //Append all the elements in order to the article element
+        // Append all the elements in order to the article element
         article.appendChild(image);
         article.appendChild(nameElement);
         article.appendChild(descriptionButton);
         article.appendChild(userNameButton);
         article.appendChild(deleteButton);
 
-        //Finally add the article to the page
+        // Finally add the article to the page
         objectContainer.appendChild(article);
-
     }
-
 }
 
-//Handle all click events that happen in the object container
-function objectClickHandler(e) {
+// Filter objects based on search input
+function filterObjects() {
+    const query = document.getElementById('search').value.toLowerCase();
+    const articles = objectContainer.getElementsByTagName('article');
 
-    //Put the tag name in a variable for ease of use
+    for (let article of articles) {
+        const nameElement = article.querySelector('h3');
+        if (nameElement.innerText.toLowerCase().includes(query)) {
+            article.style.display = ''; // Show the article if it matches
+        } else {
+            article.style.display = 'none'; // Hide if it doesn't match
+        }
+    }
+}
+
+// Handle all click events that happen in the object container
+function objectClickHandler(e) {
+    // Put the tag name in a variable for ease of use
     let tagName = e.target.tagName;
 
-    //Create some empty variables that we'll fill in the following switch statement
+    // Create some empty variables that we'll fill in the following switch statement
     let id;
     let action;
 
@@ -115,25 +137,23 @@ function objectClickHandler(e) {
                 action = 'details';
             } else if (e.target.classList.contains('editButton')) {
                 action = 'edit';
-            }
-            else if (e.target.classList.contains('deleteButton')) {
-                action = 'delete'
+            } else if (e.target.classList.contains('deleteButton')) {
+                action = 'delete';
             }
             break;
         default: return;
     }
 
-    //Depending on the action, do something
+    // Depending on the action, do something
     switch (action) {
         case 'details': redirectToDetails(id); break;
         case 'favorite': toggleFavorite(id); break;
         case 'edit': redirectToEdit(id); break;
         case 'delete': redirectToDelete(id); break;
     }
-
 }
 
-//thanks mdn webdocs
+// Thanks MDN Webdocs
 function objectContainerScrollHandler() {
     const scrollTop = objectContainer.scrollTop;
     const containerHeight = objectContainer.scrollHeight - objectContainer.clientHeight;
@@ -165,12 +185,12 @@ function stopScrolling() {
     scrollWheel.style.backgroundColor = 'var(--green)'; // Reset when scrolling stops
 }
 
-//Go to the details page
+// Go to the details page
 function redirectToDetails(id) {
     window.location.href = (BASE_PATH + 'details?id=' + id);
 }
 
-//Go to the edit page
+// Go to the edit page
 function redirectToEdit(id) {
     window.location.href = (BASE_PATH + 'edit?id=' + id);
 }
@@ -179,23 +199,21 @@ function redirectToDelete(id) {
     window.location.href = (BASE_PATH + 'delete?id=' + id);
 }
 
-//Toggles favorite class and updates the localstorage
+// Toggles favorite class and updates the localstorage
 function toggleFavorite(id) {
-
-    //Update the localstorage
+    // Update the localstorage
     if (localStorage.getItem(id)) {
-        //If the key does exist in the localstorage, remove it
+        // If the key does exist in the localstorage, remove it
         localStorage.removeItem(id);
     } else {
-        //If the key does not exist, add it
+        // If the key does not exist, add it
         localStorage.setItem(id, 'favorite');
     }
 
-    //Toggle the favorite class on the article element
+    // Toggle the favorite class on the article element
     let article = document.querySelector(`article[data-object-id='${id}']`);
     article.classList.toggle('favorite');
 
-    //Also toggle it on the svg image, which should be the first child
+    // Also toggle it on the svg image, which should be the first child
     article.children.item(0).classList.toggle('favorite');
-
 }

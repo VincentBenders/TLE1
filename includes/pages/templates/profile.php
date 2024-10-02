@@ -50,12 +50,17 @@
 
 
     </div>
-    <div class="buttons_profile_page">
-        <div class="buttons">
-            <a class="button is-warning is-light is-small is-outlined" href="<?= BASE_PATH ?>userUpdate?id=<?= $_SESSION['id'] ?>">
+    <div class="update">
+        <div class="updateProfile">
+            <a class="updateProfileButton" href="<?= BASE_PATH ?>userUpdate?id=<?= $_SESSION['userId'] ?>">
                 Profiel bewerken
             </a>
         </div>
     </div>
-    <br>
+
+    <a href="<?= BASE_PATH ?>home" class="button">
+        Go back
+        <img src="<?= BASE_PATH ?>includes/images/arrow-right.svg" alt="" class="white">
+    </a>
+
 </div>
