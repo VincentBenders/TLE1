@@ -135,12 +135,23 @@ function objectClickHandler(e) {
 
 //thanks mdn webdocs
 function objectContainerScrollHandler() {
-    const scrollTop = objectContainer.scrollTop;
-    const containerHeight = objectContainer.scrollHeight - objectContainer.clientHeight;
+
 
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            updateScrollWheel(scrollTop, containerHeight);
+            const scrollTop = objectContainer.scrollTop;
+            const clientHeight = objectContainer.clientHeight;
+            const scrollHeight = objectContainer.scrollHeight;
+
+            const scrollableDistance = scrollHeight - clientHeight;
+            const remainingHeight = scrollableDistance - scrollTop;
+            const remainingPercentage = remainingHeight / scrollableDistance;
+            const topPercentage = scrollTop / scrollableDistance;
+            const scrollBarHeight = ((clientHeight / 100) * 10);
+
+            const top = ((clientHeight - scrollBarHeight) * topPercentage);
+
+            updateScrollWheel(top);
             ticking = false;
         });
         ticking = true;
@@ -153,12 +164,11 @@ function objectContainerScrollHandler() {
     scrollTimeout = setTimeout(stopScrolling, 150);
 }
 
-function updateScrollWheel(scrollPos, containerHeight) {
-    const scrollPercentage = (scrollPos / containerHeight) * 100;
+function updateScrollWheel(top) {
 
     // Move the scrollWheel along the right edge of the container
-    scrollWheel.style.top = `${scrollPercentage}%`; // Vertical movement
-    scrollWheel.style.backgroundColor = 'darkgreen'; // Feedback during scrolling
+    scrollWheel.style.top = `${top}px`; // Vertical movement
+    scrollWheel.style.backgroundColor = 'var(--ourple)'; // Feedback during scrolling
 }
 
 function stopScrolling() {
