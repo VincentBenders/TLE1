@@ -1,9 +1,10 @@
 window.addEventListener("load", init);
 //Globals
-const apiUrl = "http://localhost/programmeren3/soulsmagazine/index.php";
+const apiUrl = "http://localhost/TLE1/api/index.php";
+let itemData = {};
 
 function init() {
-  getData(apiUrl, successHandler);
+    getData(apiUrl, successHandler);
 }
 
 function getData(url, success) {
@@ -18,15 +19,22 @@ function getData(url, success) {
     .catch(errorHandler);
 }
 
-function weaponSuccessData(data) {
-  
+function successHandler(data) {
+  for (let weapon of data) {
+    let weaponurl =
+      "http://localhost/TLE1/api/index.php?id=" + weapon.id;
+    getData(weaponurl, weaponSuccessData);
+  }
 }
-
 
 function errorHandler(error) {
   console.log(error);
   const errordiv = document.createElement("div");
   errordiv.classList.add("error");
   errordiv.innerText = "data not available";
-  document.body.before(errordiv);
 }
+
+function weaponSuccessData(data) {
+    console.log(data,"WEAPONSUCCES")
+}
+
