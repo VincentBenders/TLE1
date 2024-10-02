@@ -197,8 +197,7 @@ main {
     height: 50vh;
     gap: 1vw;
     padding: 1vw;
-    padding-right: 20px;
-    margin: 1vw;
+    padding-right: 20px;margin: 1vw;
     position: relative;
 }
 
@@ -446,4 +445,18 @@ img.white {
         width: 1em;
         translate: 0 0.1em;
     }
+}
+
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.profilePagePicture img {
+    width: 100px;
+    height: auto;
 }
