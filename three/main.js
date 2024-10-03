@@ -1,10 +1,10 @@
 window.addEventListener("load", init);
 //Globals
-const apiUrl = "http://localhost/TLE1/api/index.php";
+const apiUrl = "../api/index.php";
 let itemData = {};
 
 function init() {
-    getData(apiUrl, successHandler);
+    // getData(apiUrl, successHandler);
 }
 
 function getData(url, success) {
@@ -22,7 +22,7 @@ function getData(url, success) {
 function successHandler(data) {
   for (let weapon of data) {
     let weaponurl =
-      "http://localhost/TLE1/api/index.php?id=" + weapon.id;
+      "../api/index.php?id=" + weapon.id;
     getData(weaponurl, weaponSuccessData);
   }
 }
