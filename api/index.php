@@ -14,5 +14,6 @@ if (!isset($_GET['id'])) {
 
 //Set the header & output JSON so the client will know what to expect.
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
 echo json_encode($data);
 exit;
