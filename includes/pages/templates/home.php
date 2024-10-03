@@ -1,8 +1,11 @@
+<!--The live server was acting weird with this workaround, so I'm using another-->
+<!--<script>-->
+<!--    let Objects = --><?php //= json_encode($objects ?? '') ?? '' ?><!--;-->
+<!--    let BASE_PATH = --><?php //= BASE_PATH ?><!--;-->
+<!--</script>-->
 <script src="<?= BASE_PATH ?>/includes/js/home.js"></script>
-<script>
-    let Objects = <?= json_encode($objects ?? '') ?? '' ?>;
-    let BASE_PATH = <?= BASE_PATH ?>;
-</script>
+<div id="fakeJson" style="display: none"><?= json_encode($objects ?? '') ?? '' ?></div>
+<div id="basePath" style="display: none"><?= BASE_PATH ?></div>
 
 <main id="homeMain">
 

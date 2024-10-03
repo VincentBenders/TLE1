@@ -6,12 +6,17 @@ let objectContainer;
 let scrollWheel;
 let ticking = false;
 let scrollTimeout;
+let Objects;
+let BASE_PATH;
 
 // The function to run when the page has loaded
 function init() {
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
     scrollWheel = document.getElementById('scrollWheel');
+
+    Objects = JSON.parse(document.getElementById('fakeJson').innerText);
+    BASE_PATH = document.getElementById('basePath').innerText;
 
     // Add search functionality
     const searchInput = document.getElementById('search');
@@ -164,8 +169,8 @@ function objectContainerScrollHandler() {
             const scrollHeight = objectContainer.scrollHeight;
 
             const scrollableDistance = scrollHeight - clientHeight;
-            const remainingHeight = scrollableDistance - scrollTop;
-            const remainingPercentage = remainingHeight / scrollableDistance;
+            // const remainingHeight = scrollableDistance - scrollTop;
+            // const remainingPercentage = remainingHeight / scrollableDistance;
             const topPercentage = scrollTop / scrollableDistance;
             const scrollBarHeight = ((clientHeight / 100) * 10);
 
