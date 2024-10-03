@@ -1,8 +1,6 @@
-<script>
-    let publicObjects = <?= json_encode($objects ?? '') ?? '' ?>;
-    let BASE_PATH = <?= BASE_PATH ?>;
-</script>
 <script src="<?= BASE_PATH ?>/includes/js/showcase.js"></script>
+<div id="fakeJson" style="display: none"><?= json_encode($objects ?? '') ?? '' ?></div>
+<div id="basePath" style="display: none"><?= BASE_PATH ?></div>
 
 <main id="homeMain">
 

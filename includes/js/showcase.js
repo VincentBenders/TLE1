@@ -6,9 +6,14 @@ let objectContainer;
 let scrollWheel
 let ticking = false;
 let scrollTimeout;
+let publicObjects;
+let BASE_PATH;
 
 //The function to run when the page has loaded
 function init() {
+
+    publicObjects = JSON.parse(document.getElementById('fakeJson').innerText);
+    BASE_PATH = document.getElementById('basePath').innerText;
 
     objectContainer = document.getElementById('objectContainer');
     objectContainer.addEventListener('click', objectClickHandler);
